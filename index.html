@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDS Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap bar">
+      <span class="brand">MDS Project</span>
+      <a class="jump" href="#teams">Browse teams</a>
+    </div>
+  </header>
+
+  <section class="page-hero hub">
+    <canvas class="field" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h1 data-scramble>MDS Project</h1>
+      <p class="lede">Every team has its own site with its problem statement, results and members. Pick yours below.</p>
+    </div>
+  </section>
+
+  <main class="wrap" id="teams">
+    <div class="toolbar">
+      <h2>Find your team</h2>
+      <label class="search">
+        <span class="visually-hidden">Search teams</span>
+        <input id="search" type="search" placeholder="Search by team number or project title" autocomplete="off">
+      </label>
+    </div>
+    <ul class="team-grid" id="team-grid"></ul>
+    <p class="empty" id="empty" hidden>No team matches your search.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">MDS Project, IIT Dharwad</div>
+  </footer>
+
+  <script>
+    // Default tile text. Each team overrides it from its own folder (teams/teamNN/info.js), so you do not need to edit this.
+    window.TEAMS = [
+    { name: "Team 1", topic: "Project title to be added", folder: "team01" },
+    { name: "Team 2", topic: "Project title to be added", folder: "team02" },
+    { name: "Team 3", topic: "Project title to be added", folder: "team03" },
+    { name: "Team 4", topic: "Project title to be added", folder: "team04" },
+    { name: "Team 5", topic: "Project title to be added", folder: "team05" },
+    { name: "Team 6", topic: "Project title to be added", folder: "team06" },
+    { name: "Team 7", topic: "Project title to be added", folder: "team07" },
+    { name: "Team 8", topic: "Project title to be added", folder: "team08" },
+    { name: "Team 9", topic: "Project title to be added", folder: "team09" },
+    { name: "Team 10", topic: "Project title to be added", folder: "team10" },
+    { name: "Team 11", topic: "Project title to be added", folder: "team11" },
+    { name: "Team 12", topic: "Project title to be added", folder: "team12" },
+    { name: "Team 13", topic: "Project title to be added", folder: "team13" },
+    { name: "Team 14", topic: "Project title to be added", folder: "team14" },
+    { name: "Team 15", topic: "Project title to be added", folder: "team15" },
+    { name: "Team 16", topic: "Project title to be added", folder: "team16" },
+    { name: "Team 17", topic: "Project title to be added", folder: "team17" },
+    { name: "Team 18", topic: "Project title to be added", folder: "team18" },
+    { name: "Team 19", topic: "Project title to be added", folder: "team19" },
+    { name: "Team 20", topic: "Project title to be added", folder: "team20" },
+    { name: "Team 21", topic: "Project title to be added", folder: "team21" },
+    { name: "Team 22", topic: "Project title to be added", folder: "team22" }
+    ];
+  </script>
+  <script src="assets/site.js" defer></script>
+</body>
+</html>

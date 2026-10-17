@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Team photo placeholder">
+  <rect width="400" height="400" fill="#E3E7FF"/>
+  <g fill="#9AA3F5"><circle cx="200" cy="140" r="46"/><path d="M110 330C110 250 150 205 200 205S290 250 290 330Z"/>
+  <circle cx="110" cy="165" r="34" opacity=".75"/><path d="M40 330C40 275 70 238 110 238S165 270 165 330Z" opacity=".75"/>
+  <circle cx="290" cy="165" r="34" opacity=".75"/><path d="M235 330C235 270 255 238 290 238S360 275 360 330Z" opacity=".75"/></g>
+</svg>

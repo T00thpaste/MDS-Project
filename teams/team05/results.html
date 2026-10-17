@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Team 5 | Results</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap bar">
+      <div class="brand-group">
+        <a class="back" href="../../index.html">All teams</a>
+        <!-- EDIT: team name (also change it in the other two pages) -->
+        <span class="brand">Team 5</span>
+      </div>
+      <nav class="tabs" aria-label="Team pages">
+        <a href="index.html">Project</a>
+        <a href="results.html" aria-current="page">Results</a>
+        <a href="team.html">Team</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <section class="page-hero">
+    <canvas class="field" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h1 data-scramble>Results</h1>
+      <p class="lede">Graphs from the project, with an explanation of what each one shows.</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+
+    <!--
+      HOW TO ADD A GRAPH
+      1. Save your image inside this team's "images" folder (for example images/graph1.png).
+      2. Copy everything from "BEGIN RESULT" to "END RESULT" and paste it below the last result.
+      3. Change the image name, the alt text, the title and the explanation.
+    -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <!-- EDIT: replace the src with images/your-graph.png -->
+        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
+        <figcaption>Figure 1. Short caption for the graph.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Title of this result</h2>
+        <p>Explain what the graph shows and what a reader should notice first.</p>
+        <p>Add anomalies, patterns or observations you found in the data here.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
+        <figcaption>Figure 2. Short caption for the graph.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Title of this result</h2>
+        <p>Explain what the graph shows and what a reader should notice first.</p>
+        <p>Add anomalies, patterns or observations you found in the data here.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <div class="prose summary">
+      <!-- EDIT: sum up the main findings -->
+      <h2>Anomalies, observations and patterns</h2>
+      <ul>
+        <li><strong>Anomaly:</strong> something unusual in the data and a likely reason for it.</li>
+        <li><strong>Observation:</strong> something you measured or noticed.</li>
+        <li><strong>Pattern:</strong> a trend that repeats across the dataset.</li>
+      </ul>
+    </div>
+
+    <p class="next"><a class="button" href="team.html">Meet the team</a> <a class="button alt" href="index.html">Back to the project</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">MDS Project, IIT Dharwad</div>
+  </footer>
+  <script src="../../assets/site.js" defer></script>
+</body>
+</html>

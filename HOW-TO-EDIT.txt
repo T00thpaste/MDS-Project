@@ -1,0 +1,46 @@
+MDS PROJECT WEBSITE: GUIDE FOR TEAMS
+====================================
+
+Your team has one folder inside "teams" (for example teams/team05).
+Only edit files inside YOUR folder. Do not touch "assets" or other teams' folders.
+
+Inside your folder:
+  index.html    Project tab: your topic and problem statement (this is your first page)
+  results.html  Results tab: graphs and explanations
+  team.html     Team tab: member photos and short bios
+  info.js       Your tile on the main page: change the team name and project title in it
+  images/       Put your graphs and photos here
+
+How to edit
+  1. Open the .html file in any text editor (VS Code is best).
+  2. Look for the comments that start with "EDIT" or "HOW TO". They tell you what to change.
+  3. Replace the placeholder text with your own text.
+  4. Save, then double-click the file to open it in your browser and check it.
+
+Adding a graph or a photo
+  1. Copy the image into your "images" folder (use simple names like graph1.png, riya.jpg).
+  2. In the HTML, change the image line, for example:
+       src="../../assets/placeholder.svg"   ->   src="images/graph1.png"
+  3. Write a short sentence in alt="..." that describes the image.
+
+Team photo or logo
+  Save it as images/team.jpg (png or webp also work) in your folder. It replaces the
+  placeholder on your Team page and replaces the chart on your tile on the main page.
+  Member photos are shown as circles, so use square photos with the face in the middle.
+
+Adding more graphs or members
+  Copy everything between <!-- BEGIN RESULT --> and <!-- END RESULT -->
+  (or BEGIN MEMBER and END MEMBER) and paste it right below. Then edit the copy.
+
+Team name
+  The name at the top left ("Team 5") is in all three HTML files. Change it in each one.
+
+Do not move or rename files or folders. The links between pages depend on them.
+
+FOR THE ORGANISER
+  - You do not edit the main page. Each team sets its own tile text in its info.js
+    and its tile picture by saving images/team.jpg.
+  - Hosting: all links are relative, so the folder works on GitHub Pages, a college server,
+    or just opened from a drive. Keep the folder structure as it is.
+  - _generator/generate.py recreates the team folders. Do not run it with --force after
+    teams have started editing, or their work will be overwritten.

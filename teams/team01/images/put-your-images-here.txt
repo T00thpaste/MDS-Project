@@ -1,0 +1,1 @@
+Save your graphs and team photos in this folder, then use the file name in your HTML.
