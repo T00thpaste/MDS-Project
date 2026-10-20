@@ -3,5 +3,5 @@
 window.TEAM_INFO = window.TEAM_INFO || {};
 window.TEAM_INFO["team10"] = {
   name: "Team 10",
-  topic: "Project title to be added"
+  topic: "FinRisk: Loan Default Prediction"
 };

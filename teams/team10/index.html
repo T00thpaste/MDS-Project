@@ -30,8 +30,8 @@
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
       <!-- EDIT: your project title and a one or two line summary -->
-      <h1 data-scramble>Your project title goes here</h1>
-      <p class="lede">One or two sentences that tell a visitor what this project is about and why it matters.</p>
+      <h1 data-scramble>FinRisk: Loan Default Prediction</h1>
+      <p class="lede">Predicting which loan applicants are likely to default, using statistically grounded EDA, tuned gradient boosting, tabular deep learning and explicit control of target leakage.</p>
     </div>
   </section>
 
@@ -39,22 +39,23 @@
 
     <!-- EDIT: describe the problem statement (PS) your team was given -->
     <h2>Problem statement</h2>
-    <p>Describe the problem your team is solving. Say what question you are trying to answer and what the final outcome should look like.</p>
-    <p>Add more paragraphs by copying a &lt;p&gt; line like this one.</p>
+    <p>Lenders need to identify applicants who are likely to default before extending credit. Our task was to build and evaluate models that predict loan default from applicant demographic, credit-bureau and repayment features, while being careful that the dataset's own scoring formula does not leak into the model.</p>
+    <p>The final outcome is a set of calibrated, cost-aware default-risk models, compared on discrimination (ROC/PR-AUC), calibration, business-relevant decision thresholds, explainability and fairness across subgroups.</p>
 
     <h2>Dataset</h2>
-    <p>Where the data comes from, how many rows and columns it has, and what each important column means.</p>
+    <p>The FinRisk dataset contains 230,633 loan applicants described by 61 demographic, credit-bureau and repayment features, with an 8.46% default rate. Re-implementing the dataset's built-in risk score showed it is a formula of 13 of the supplied features (R² = 0.926, residual standard deviation 0.0200, matching the injected noise), so those 13 features are removed before modelling to avoid leakage.</p>
 
     <h2>Approach</h2>
-    <p>Briefly explain the steps you followed, from cleaning the data to producing the final results.</p>
+    <p>We moved from statistical exploration to leakage-aware modelling in four stages:</p>
     <ul>
-      <li>Step or method one</li>
-      <li>Step or method two</li>
-      <li>Step or method three</li>
+      <li>Extended EDA: Mann-Whitney U, Kolmogorov-Smirnov and chi-square tests with Benjamini-Hochberg false-discovery correction, Information Value, mutual information, variance-inflation factors, PCA and t-SNE.</li>
+      <li>Tuned gradient boosting: grid-searched logistic regression, and LightGBM/XGBoost tuned with Optuna (TPE sampler, median pruning) under 5-fold stratified cross-validation.</li>
+      <li>Tabular deep learning: an MLP with categorical embeddings, a ResNet-MLP and an FT-Transformer, each tuned and cross-validated.</li>
+      <li>Ensembles and evaluation: rank-average, AUC-weighted and stacked ensembles, Platt/isotonic calibration, cost-sensitive decision thresholds, TreeSHAP explanations and a fairness audit.</li>
     </ul>
 
     <h2>Tools used</h2>
-    <p>Python, pandas, matplotlib (replace with your own list).</p>
+    <p>Python, pandas, scikit-learn, LightGBM, XGBoost, PyTorch, Optuna, SHAP and matplotlib.</p>
 
     <p class="next"><a class="button" href="results.html">See the results</a> <a class="button alt" href="team.html">Meet the team</a></p>
   </main>

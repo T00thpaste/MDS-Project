@@ -25,7 +25,6 @@
     </div>
   </header>
 
-
   <section class="page-hero">
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
@@ -46,14 +45,12 @@
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <!-- EDIT: replace the src with images/your-graph.png -->
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 1. Short caption for the graph.</figcaption>
+        <img src="images/09_leaderboard.png" alt="Bar chart comparing ROC-AUC and PR-AUC across all trained models">
+        <figcaption>Figure 1. Leaderboard comparing every model on hold-out ROC-AUC and PR-AUC.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Model leaderboard</h2>
+        <p>A baseline histogram gradient-boosting model reaches a hold-out ROC-AUC of 0.780 on leakage-controlled features, against 0.759 for logistic regression. Optuna-tuned LightGBM/XGBoost, the deep tabular networks and the stacked ensembles are compared against this baseline here.</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -61,13 +58,64 @@
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 2. Short caption for the graph.</figcaption>
+        <img src="images/10_roc_pr_all_models.png" alt="ROC and precision-recall curves for all models overlaid">
+        <figcaption>Figure 2. ROC and precision-recall curves for all models.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Discrimination: ROC and PR curves</h2>
+        <p>These curves show how well each model ranks defaulters above non-defaulters at every threshold. Because only 8.46% of applicants default, the precision-recall curve is the more informative view of real-world performance.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/11_calibration.png" alt="Calibration curves comparing predicted probability to observed default rate, before and after calibration">
+        <figcaption>Figure 3. Calibration curves before and after Platt and isotonic calibration.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Calibration</h2>
+        <p>A model that ranks applicants well can still output probabilities that are too high or too low. We check this with reliability curves and the Brier score / expected calibration error, then correct it with Platt scaling and isotonic regression.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/13_gains_ks.png" alt="Gains, KS statistic and lift tables for the chosen model">
+        <figcaption>Figure 4. Gains, KS and lift tables used to judge business usefulness.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Gains, KS and lift</h2>
+        <p>Beyond AUC, we check how much of the default population is captured in the top deciles of predicted risk, which is what a lender actually acts on. This also feeds into choosing a cost-optimal decision threshold instead of the default 0.5 cutoff.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/14_shap_beeswarm.png" alt="SHAP beeswarm plot showing the effect of each feature on the model's default predictions">
+        <figcaption>Figure 5. TreeSHAP beeswarm plot of feature contributions.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Explainability</h2>
+        <p>TreeSHAP values show which features push a prediction toward or away from default, and by how much. External credit-bureau scores stand out as the strongest predictors, consistent with their high Information Value from the EDA stage.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/16_fairness.png" alt="Fairness audit comparing model error rates and approval rates across demographic subgroups">
+        <figcaption>Figure 6. Fairness audit across demographic subgroups.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Fairness audit</h2>
+        <p>We check whether the model's error rates and approval rates differ across demographic subgroups, since a model that is accurate on average can still be systematically unfair to a subgroup.</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -76,9 +124,9 @@
       <!-- EDIT: sum up the main findings -->
       <h2>Anomalies, observations and patterns</h2>
       <ul>
-        <li><strong>Anomaly:</strong> something unusual in the data and a likely reason for it.</li>
-        <li><strong>Observation:</strong> something you measured or noticed.</li>
-        <li><strong>Pattern:</strong> a trend that repeats across the dataset.</li>
+        <li><strong>Anomaly:</strong> the dataset's built-in risk score can be reconstructed from 13 of the supplied features (R² = 0.926), meaning those features leak the label and must be excluded before modelling.</li>
+        <li><strong>Observation:</strong> 53 of 56 numeric features differ significantly between defaulters and non-defaulters, but 43 of those differences are negligible in effect size; only the external credit scores are strong predictors (Information Value up to 0.571).</li>
+        <li><strong>Pattern:</strong> tuned gradient boosting, deep tabular networks and stacked ensembles consistently outperform the plain logistic-regression baseline once leakage is removed, and calibration/threshold choice matters as much as raw AUC for real decisions.</li>
       </ul>
     </div>
 
