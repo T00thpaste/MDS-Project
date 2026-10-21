@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Team 2 | Results</title>
+  <title>Data Speaks | Results</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
       <h1 data-scramble>Results</h1>
-      <p class="lede">Graphs from the project, with an explanation of what each one shows.</p>
+      <p class="lede">Observed outcome distributions, model comparisons, K-Means clusters, and PCA visualizations from the project.</p>
     </div>
   </section>
 
@@ -46,14 +46,13 @@
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <!-- EDIT: replace the src with images/your-graph.png -->
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 1. Short caption for the graph.</figcaption>
+        <!-- EDIT: replace the src with images/your-graph.png when adding a figure -->
+        <img src="images/fig1_target_distribution.png" alt="Distribution of Dropout, Enrolled, and Graduate outcomes">
+        <figcaption>Figure 1. Distribution of student outcomes in the dataset.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Target distribution</h2>
+        <p>Graduate is the largest group in the plotted distribution, followed by Dropout; Enrolled is the smallest. The dataset contains 4,424 records across these three outcome classes.</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -61,13 +60,91 @@
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 2. Short caption for the graph.</figcaption>
+        <img src="images/fig2_first_semester_grade.png" alt="First-semester grade distributions grouped by student outcome">
+        <figcaption>Figure 2. First-semester grades by student outcome.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>First-semester grades</h2>
+        <p>The median first-semester grade is higher for Graduate than for Enrolled and Dropout. Dropout grades show a wider spread, including many values at zero. This is a descriptive pattern in the data, not evidence that grades cause a particular outcome.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/fig3_confusion_matrix.png" alt="Confusion matrix for the final Logistic Regression classifier">
+        <figcaption>Figure 3. Confusion matrix for the final Logistic Regression model.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Classification model comparison</h2>
+        <p>Logistic Regression had the highest reported accuracy and weighted F1 among the four compared models and was selected for its overall performance and interpretability.</p>
+        <ul>
+          <li>Logistic Regression: 73.9% accuracy; 72.4% weighted F1.</li>
+          <li>Random Forest: 73.0% accuracy; 70.2% weighted F1.</li>
+          <li>Tuned Random Forest: 71.5% accuracy; 64.8% weighted F1.</li>
+          <li>Balanced Logistic Regression: 69.9% accuracy; 71.2% weighted F1.</li>
+        </ul>
+        <p>The confusion matrix indicates Dropout and Graduate are reasonably well distinguished, while Enrolled is more difficult to classify.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/fig4_elbow_method.png" alt="Elbow curve used to select the number of K-Means clusters">
+        <figcaption>Figure 4. Elbow method for selecting the K-Means cluster count.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>K-Means clustering (K = 4)</h2>
+        <p>The reduction in inertia becomes less pronounced around K = 4, supporting the choice of four clusters. Clustering used 11 standardized academic and enrollment features; the target was not used to construct the clusters.</p>
+        <ul>
+          <li>Cluster 0: 778 students (17.6%), interpreted as low performance; 81.75% Dropout was reported.</li>
+          <li>Cluster 1: 1,871 students (42.3%), interpreted as intermediate; 45.54% Graduate and 29.24% Dropout were reported.</li>
+          <li>Cluster 2: 240 students (5.4%), interpreted as high engagement; 66.25% Graduate was reported.</li>
+          <li>Cluster 3: 1,535 students (34.7%), interpreted as strong performance; 73.09% Graduate was reported.</li>
+        </ul>
+        <p>Only documented outcome proportions are listed. The reported differences describe associations between cluster membership and outcomes; they do not establish causes.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/fig5_pca_variance.png" alt="Cumulative explained variance for principal components">
+        <figcaption>Figure 5. Cumulative variance retained by PCA components.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>PCA: explained variance</h2>
+        <p>PCA was applied to the selected 11 academic and enrollment features. Five components retained approximately 89.95% of the variance; the first component retained 47.73%, and the first three retained 75.85%.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/fig6_pca_by_target.png" alt="Student outcome classes visualized in the PCA-reduced feature space">
+        <figcaption>Figure 6. Student outcomes in the PCA-reduced feature space.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>PCA by student outcome</h2>
+        <p>The outcome classes overlap in the reduced feature space. The first components therefore do not separate Dropout, Enrolled, and Graduate into completely distinct groups.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/fig7_pca_by_cluster.png" alt="K-Means clusters visualized in the PCA-reduced feature space">
+        <figcaption>Figure 7. K-Means clusters shown in the PCA-reduced feature space.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>PCA by K-Means cluster</h2>
+        <p>The clusters occupy distinguishable regions in the reduced feature space, providing a complementary view of similarities in academic and enrollment characteristics.</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -76,9 +153,10 @@
       <!-- EDIT: sum up the main findings -->
       <h2>Anomalies, observations and patterns</h2>
       <ul>
-        <li><strong>Anomaly:</strong> something unusual in the data and a likely reason for it.</li>
-        <li><strong>Observation:</strong> something you measured or noticed.</li>
-        <li><strong>Pattern:</strong> a trend that repeats across the dataset.</li>
+        <li><strong>Classification:</strong> Logistic Regression led the model comparison in accuracy (73.9%) and weighted F1 (72.4%); Enrolled was harder to distinguish.</li>
+        <li><strong>Clustering:</strong> K-Means produced four groups with different reported outcome proportions. These are descriptive associations, not causal effects.</li>
+        <li><strong>Dimensionality reduction:</strong> Five PCA components retained approximately 89.95% of variance in the selected 11 features.</li>
+        <li><strong>Limitation:</strong> Findings describe this dataset and should not be interpreted as causal explanations or guarantees about individual students.</li>
       </ul>
     </div>
 

@@ -3,5 +3,5 @@
 window.TEAM_INFO = window.TEAM_INFO || {};
 window.TEAM_INFO["team02"] = {
   name: "Team 2",
-  topic: "Project title to be added"
+  topic: "Data Speaks: Student Dropout Prediction and Academic Success Analysis"
 };
