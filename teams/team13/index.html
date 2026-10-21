@@ -30,8 +30,8 @@
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
       <!-- EDIT: your project title and a one or two line summary -->
-      <h1 data-scramble>Your project title goes here</h1>
-      <p class="lede">One or two sentences that tell a visitor what this project is about and why it matters.</p>
+      <h1 data-scramble>Data Speaks!!</h1>
+      <p class="lede">Data Speaks!! is a group data-mining project from IIT Dharwad, built on about 523k cleaned Spotify tracks that span a century of recorded music. Its three parts blend one song smoothly into another, test whether music really changed over 100 years in the ways it is commonly assumed to have changed, and find the natural "tribes" that appear when nothing but sound defines them.</p>
     </div>
   </section>
 
@@ -39,22 +39,30 @@
 
     <!-- EDIT: describe the problem statement (PS) your team was given -->
     <h2>Problem statement</h2>
-    <p>Describe the problem your team is solving. Say what question you are trying to answer and what the final outcome should look like.</p>
-    <p>Add more paragraphs by copying a &lt;p&gt; line like this one.</p>
+    <p>Every track in the Spotify dataset comes with 12 audio features. These are numbers such as danceability, energy, acousticness and tempo that describe how a track sounds. Data Speaks!! asks what these numbers can reveal about recorded music. It answers this through three independent parts, all built on the same shared, cleaned data.</p>
+    <p>The DJ Transition Engine asks: given two songs that sound very different, such as a slow acoustic ballad and a hard EDM drop, can an ordered chain of real songs from the dataset bridge them gradually, the way a DJ builds a set? The Sound Timeline takes one audio feature at a time and asks whether it genuinely changed across the century (1922-2021), and how confidently that claim can be made. The Music Tribes Explorer asks what natural groupings ("tribes") appear when nothing but sound defines them, with no genre, artist, year or popularity in the model, and maps the whole collection in two dimensions.</p>
+    <p>The final outcome is a set of tested results plus precomputed, frontend-ready data for a project website: about 50 song-to-song transitions, a century timeline of five audio features with their turning points marked, and a browser map of about 5,000 songs, each labelled with one of six named tribes. A full write-up comes with the Sound Timeline, and a written report comes with the Music Tribes Explorer.</p>
 
     <h2>Dataset</h2>
-    <p>Where the data comes from, how many rows and columns it has, and what each important column means.</p>
+    <p>All three parts use the Spotify Dataset 1921-2020, published on Kaggle by Yamaç Eren Ay. It describes each track with Spotify's audio features, along with artist and genre metadata, popularity and release year. Features such as acousticness, speechiness, liveness, instrumentalness and energy are outputs of proprietary classification models, not direct physical measurements. The catalogue also reflects what is on Spotify today rather than a complete history of recorded music.</p>
+    <p>Cleaning, feature engineering and fitting the scaler happen once, in a separate shared preprocessing notebook that cleans about 523k tracks. It produces two shared files. The first is data/tracks_100k.parquet, a cleaned, decade-stratified sample of 100,001 tracks with 28 columns (audio features, artist and genre metadata, popularity, release year and decade). The second is data/scaler.joblib, a scikit-learn StandardScaler fit on the full ~523k cleaned corpus. The scaler is the shared source of truth for standardising the 12 audio features. No part re-fits it or re-runs the cleaning.</p>
+    <p>The DJ Transition Engine and the Music Tribes Explorer both work on the 100,001-track sample, standardised with the shared scaler, so they share exactly the same 12-dimensional feature space. The smaller sample keeps nearest-neighbour search and clustering fast enough to run. The Sound Timeline instead uses the full cleaned dataset of 523,585 tracks released from 1922 to 2021 (tracks_clean_full.parquet). It does not load the shared scaler, because it studies one feature at a time and its tests never compare distances across features. The larger dataset also gives it tighter confidence intervals.</p>
+    <p>The key columns are the 12 audio features, named in the code as: danceability, energy, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration_ms, mode and time_signature. Ten of them are continuous. mode is binary (major or minor) and time_signature is a near-constant small integer. The Sound Timeline focuses on five of the features: acousticness, speechiness, liveness, instrumentalness and tempo. Other columns used include popularity (0 to 100), release_year, decade, track and artist names, and artist genre tags. Genre tags never enter the clustering. They are used afterwards to check the tribes and, in the Sound Timeline, to detect non-music tracks.</p>
 
     <h2>Approach</h2>
-    <p>Briefly explain the steps you followed, from cleaning the data to producing the final results.</p>
+    <p>All three parts start from the same shared, cleaned data. From there, each part uses its own method and ends with precomputed, frontend-ready files for the website.</p>
     <ul>
-      <li>Step or method one</li>
-      <li>Step or method two</li>
-      <li>Step or method three</li>
+      <li>Shared preprocessing: clean about 523k tracks once, save a 100,001-track sample (data/tracks_100k.parquet) and fit one StandardScaler on the full corpus (data/scaler.joblib). The DJ Transition Engine and the Music Tribes Explorer load these two files and go straight to their own analysis. The Sound Timeline uses the full-size cleaned output of the same pipeline (523,585 tracks) instead.</li>
+      <li>DJ Transition Engine, the graph: standardise the 12 audio features with the shared scaler and link every song to its nearest neighbours (k = 15, Euclidean distance; each song's match to itself is dropped, leaving 14 edges per song). The graph has 100,001 songs and 1,400,014 directed edges, and a connectivity check confirms it is one single connected network.</li>
+      <li>DJ Transition Engine, the paths: run Dijkstra's shortest-path algorithm between two songs to get the smoothest chain of real tracks. Test it on three demo transitions and 1,000 random song pairs, then precompute 50 curated transitions into dj_paths.json for the website, alongside the saved graph (knn_graph.npz) and a song index (song_index.json).</li>
+      <li>Sound Timeline, Chapters 1 to 5: on the full 523,585-track dataset, follow one feature at a time across the century with one test each. Acousticness gets a logistic curve fit with a bootstrap confidence interval. Speechiness gets a 3-component Gaussian mixture and a KS test. Liveness gets a Wilcoxon signed-rank test on 2,697 matched live and studio pairs. Instrumentalness gets a Hamed-Rao Mann-Kendall trend test. Tempo gets Levene's test across decades. A reusable rule, flag_non_music(), built in Chapter 2, removes mislabeled non-music tracks and is reused in Chapters 4, 5 and 6.</li>
+      <li>Sound Timeline, synthesis and export: compare the five yearly trends using correlations on year-to-year changes (differencing), PCA and Granger causality tests, and place each chapter's turning points on one shared timeline. A showcase notebook then exports the results to sound_timeline_data.json for a future interactive page.</li>
+      <li>Music Tribes Explorer, clustering: run K-Means on the 12 standardised features for k = 2 to 15, compare the elbow, silhouette, Davies–Bouldin and smallest-cluster size, and choose k = 6, the elbow and the largest k with no degenerate cluster. Name the six tribes from their centroid profiles and per-tribe artist and song tables, then validate them against artist genres mapped to nine coarse buckets and track their shares decade by decade.</li>
+      <li>Music Tribes Explorer, mapping and outputs: project the songs to 2-D with PCA (the linear baseline) and UMAP (n_neighbors = 15, min_dist = 0.1), and re-run everything on the 10 continuous features as a sensitivity check. Export map_data.json (4,999 songs for a browser map), cluster_metadata.json, the fitted models and a written report.</li>
     </ul>
 
     <h2>Tools used</h2>
-    <p>Python, pandas, matplotlib (replace with your own list).</p>
+    <p>Python in Jupyter notebooks (run end to end with nbconvert), using pandas, NumPy, SciPy, scikit-learn, umap-learn, statsmodels, pymannkendall, matplotlib, joblib and pyarrow for Parquet files.</p>
 
     <p class="next"><a class="button" href="results.html">See the results</a> <a class="button alt" href="team.html">Meet the team</a></p>
   </main>
