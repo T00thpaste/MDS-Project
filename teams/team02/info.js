@@ -1,7 +1,5 @@
-// EDIT: this is what shows on your team's tile on the main page.
-// Change the two texts between the quotes. Do not change anything else.
 window.TEAM_INFO = window.TEAM_INFO || {};
 window.TEAM_INFO["team02"] = {
   name: "Team 2",
-  topic: "Data Speaks: Student Dropout Prediction and Academic Success Analysis"
+  topic: "Data Speaks: Student Dropout Prediction and Academic Success Analysis — student outcomes explored through classification, K-Means clustering, and PCA."
 };

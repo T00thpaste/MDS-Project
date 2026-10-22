@@ -14,7 +14,6 @@
     <div class="wrap bar">
       <div class="brand-group">
         <a class="back" href="../../index.html">All teams</a>
-        <!-- EDIT: team name (also change it in the other two pages) -->
         <span class="brand">Team 2</span>
       </div>
       <nav class="tabs" aria-label="Team pages">
@@ -36,17 +35,9 @@
 
   <main class="wrap">
 
-    <!--
-      HOW TO ADD A GRAPH
-      1. Save your image inside this team's "images" folder (for example images/graph1.png).
-      2. Copy everything from "BEGIN RESULT" to "END RESULT" and paste it below the last result.
-      3. Change the image name, the alt text, the title and the explanation.
-    -->
-
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <!-- EDIT: replace the src with images/your-graph.png when adding a figure -->
         <img src="images/fig1_target_distribution.png" alt="Distribution of Dropout, Enrolled, and Graduate outcomes">
         <figcaption>Figure 1. Distribution of student outcomes in the dataset.</figcaption>
       </figure>
@@ -85,7 +76,7 @@
           <li>Tuned Random Forest: 71.5% accuracy; 64.8% weighted F1.</li>
           <li>Balanced Logistic Regression: 69.9% accuracy; 71.2% weighted F1.</li>
         </ul>
-        <p>The confusion matrix indicates Dropout and Graduate are reasonably well distinguished, while Enrolled is more difficult to classify.</p>
+        <p>Rows in the confusion matrix are actual outcomes and columns are predicted outcomes. The model correctly classifies 212 Dropout and 395 Graduate students, but only 47 Enrolled students. Of the actual Enrolled students shown, 74 were predicted as Graduate and 38 as Dropout, making Enrolled the most difficult class to distinguish.</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -105,7 +96,7 @@
           <li>Cluster 2: 240 students (5.4%), interpreted as high engagement; 66.25% Graduate was reported.</li>
           <li>Cluster 3: 1,535 students (34.7%), interpreted as strong performance; 73.09% Graduate was reported.</li>
         </ul>
-        <p>Only documented outcome proportions are listed. The reported differences describe associations between cluster membership and outcomes; they do not establish causes.</p>
+        <p>Outcome proportions are reported only where the project provides them; an unreported proportion should not be read as zero. The target was compared with the completed clusters only to describe them. These differences are associations, not evidence of causes.</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -150,7 +141,6 @@
     <!-- END RESULT -->
 
     <div class="prose summary">
-      <!-- EDIT: sum up the main findings -->
       <h2>Anomalies, observations and patterns</h2>
       <ul>
         <li><strong>Classification:</strong> Logistic Regression led the model comparison in accuracy (73.9%) and weighted F1 (72.4%); Enrolled was harder to distinguish.</li>

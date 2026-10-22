@@ -14,7 +14,6 @@
     <div class="wrap bar">
       <div class="brand-group">
         <a class="back" href="../../index.html">All teams</a>
-        <!-- EDIT: team name (also change it in the other two pages) -->
         <span class="brand">Team 2</span>
       </div>
       <nav class="tabs" aria-label="Team pages">
@@ -29,7 +28,6 @@
   <section class="page-hero">
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
-      <!-- EDIT: your project title and a one or two line summary -->
       <h1 data-scramble>Data Speaks: Student Dropout Prediction and Academic Success Analysis</h1>
       <p class="lede">An educational data mining project exploring student outcomes through classification, clustering, and dimensionality reduction.</p>
     </div>
@@ -37,13 +35,13 @@
 
   <main class="wrap prose">
 
-    <!-- EDIT: describe the problem statement (PS) your team was given -->
     <h2>Problem statement</h2>
     <p>Student dropout and academic success are important educational outcomes. This project asks how demographic, academic, and enrollment-related data can be used to examine and classify students as Dropout, Enrolled, or Graduate.</p>
     <p>The goal is to compare classification approaches and use clustering and dimensionality reduction to describe patterns in the dataset. These analyses identify associations in the available data; they do not establish why an individual student succeeds or leaves.</p>
 
     <h2>Dataset</h2>
-    <p>The Predict Students' Dropout and Academic Success dataset contains 4,424 student records and 37 columns: 36 input features and the <code>Target</code> outcome. The target has three classes: Dropout, Enrolled, and Graduate. Features include demographic, academic, enrollment, and semester-performance information.</p>
+    <p>The Predict Students' Dropout and Academic Success dataset contains 4,424 student records and 37 columns: 36 input features and the <code>Target</code> outcome. The target has three classes: Dropout, Enrolled, and Graduate. Input features cover demographic, academic, enrollment, and semester-performance information.</p>
+    <p>The classification pipeline uses 30 of the available input features (18 categorical and 12 numerical). K-Means and PCA instead use a separately selected set of 11 academic and enrollment features.</p>
 
     <h2>Project objectives</h2>
     <ul>
@@ -52,15 +50,18 @@
       <li>Use PCA to summarize and visualize structure in the selected feature space.</li>
     </ul>
 
-    <h2>Methodology</h2>
-    <p>Data quality checks found no missing values or duplicate records. For classification, categorical variables were one-hot encoded and numerical variables standardized within a preprocessing pipeline fitted on the training data. Four classifiers were evaluated on a train-test split.</p>
-    <p>K-Means and PCA used 11 selected academic and enrollment features after standardization. The elbow method supported choosing four clusters; PCA retained five components for a compact representation. Detailed model results and figures are on the Results page.</p>
+    <h2>Data-quality checks</h2>
+    <p>Before analysis, the workflow checked the record and column structure, data types, missing values, and duplicate records. The project materials do not publish numeric check totals, so no missing-value or duplicate counts are inferred here.</p>
+
+    <h2>Preprocessing and methodology</h2>
+    <p>For classification, categorical inputs were one-hot encoded and numerical inputs standardized in a preprocessing pipeline fitted on the training data. Four classifiers were compared using a train-test evaluation.</p>
+    <p>For the unsupervised analyses, 11 selected academic and enrollment features were standardized. The elbow method supported K-Means with four clusters; the target was not used to form those clusters. PCA summarized the same selected feature space using five components. Detailed model results and figures are on the Results page.</p>
 
     <h2>Significance and limitations</h2>
-    <p>Classification, clustering, and PCA offer complementary predictive and descriptive views of student outcomes. Results describe patterns in this dataset only: they do not show causal effects, guarantee outcomes for individuals, or establish that the same patterns apply to other student populations.</p>
+    <p>Classification, clustering, and PCA offer complementary predictive and descriptive views of student outcomes. The findings describe patterns and associations in this dataset; they do not establish causes, guarantee outcomes for individuals, or show that the same patterns apply to other student populations.</p>
 
     <h2>Tools used</h2>
-    <p>Python, pandas, and scikit-learn for data preparation and analysis; project figures document the classification, clustering, and PCA results.</p>
+    <p>Python, pandas, and scikit-learn were used for data preparation, modeling, and evaluation. The supplied project figures document the classification, clustering, and PCA results.</p>
 
     <p class="next"><a class="button" href="results.html">See the results</a> <a class="button alt" href="team.html">Meet the team</a></p>
   </main>
