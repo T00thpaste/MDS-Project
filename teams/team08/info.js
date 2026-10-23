@@ -3,5 +3,5 @@
 window.TEAM_INFO = window.TEAM_INFO || {};
 window.TEAM_INFO["team08"] = {
   name: "Team 8",
-  topic: "Project title to be added"
+  topic: "Five years of India's district school report cards (PGI-D)"
 };

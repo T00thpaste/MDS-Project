@@ -1,0 +1,53 @@
+/* Extra styles for Team 8's pages only. Loaded after ../../assets/style.css and uses its colour variables. */
+
+/* stat strip on the project page */
+.stats{list-style:none;margin:2rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1rem}
+.stats li{margin:0;padding:1rem 1.1rem;background:#fff;border:2px solid var(--ink);border-radius:12px;box-shadow:4px 4px 0 var(--blue)}
+.stats b{display:block;font-family:var(--display);font-size:2rem;line-height:1.05;letter-spacing:-.02em}
+.stats span{display:block;font-size:.9rem;line-height:1.35;color:var(--muted);margin-top:.3rem}
+
+/* tables */
+.table-wrap{overflow-x:auto;margin:1.25rem 0;border:2px solid var(--ink);border-radius:12px;background:#fff}
+.data{width:100%;border-collapse:collapse;font-size:.95rem;font-variant-numeric:tabular-nums}
+.data th,.data td{padding:.55rem .8rem;text-align:left;border-bottom:1px solid #E3E5F5;vertical-align:top}
+.data thead th{font-weight:600;color:var(--muted);font-size:.85rem;background:#F8F9FF}
+.data tr:last-child td{border-bottom:0}
+.data .num{text-align:right;white-space:nowrap}
+.data .best td{font-weight:600}
+
+.note{font-size:.9rem;color:var(--muted)}
+.callout{margin:1.5rem 0;padding:1rem 1.2rem;border-left:4px solid var(--yellow);background:#fff;border-radius:0 10px 10px 0}
+.callout p{margin:.35rem 0}
+
+/* chapter headings between groups of results */
+.chapter{margin-top:5rem;padding-top:1.5rem;border-top:2px solid var(--ink)}
+.chapter h2{font-size:2.3rem;margin:0}
+.chapter p{max-width:46rem;color:var(--muted);margin-top:.5rem}
+.chapter + .result{margin-top:2rem}
+
+/* a result whose figure needs the full width */
+.result.wide{grid-template-columns:1fr;gap:1.5rem}
+.result.wide .result-text{max-width:46rem}
+
+/* live charts (added by js/charts.js; the PNG stays in the page as the fallback) */
+.chart-box{background:#fff;border:2px solid var(--ink);border-radius:12px;box-shadow:8px 8px 0 var(--blue);padding:.75rem .5rem .25rem}
+.chart{width:100%;height:380px}
+.result.wide .chart{height:430px}
+.chart-controls{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;padding:0 .5rem .5rem}
+.chart-controls label{font-size:.85rem;color:var(--muted)}
+.result>*,.chart-box{min-width:0}
+.seg{display:inline-flex;max-width:100%;overflow-x:auto;border:2px solid var(--ink);border-radius:999px}
+.seg button{flex:none;font:inherit;font-size:.85rem;font-weight:600;padding:.3rem .75rem;border:0;background:#fff;color:var(--ink);cursor:pointer}
+.seg button+button{border-left:2px solid var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.find{font:inherit;font-size:.9rem;padding:.35rem .8rem;border:2px solid var(--ink);border-radius:999px;min-width:0;width:min(100%,17rem)}
+.chart-hint{font-size:.8rem;color:var(--muted);padding:0 .5rem .4rem}
+
+.rules{padding-left:1.2rem}
+.rules li{margin:.6rem 0}
+.tag{display:inline-block;font-size:.82rem;font-weight:600;padding:.05rem .45rem;border-radius:6px;background:#E8EAFF;white-space:nowrap}
+
+.conclusion{margin-top:4rem}
+.conclusion h2{margin-top:0}
+
+@media(max-width:560px){.chart{height:320px}.result.wide .chart{height:360px}.stats b{font-size:1.6rem}}

@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="stylesheet" href="page.css">
 </head>
 <body>
   <header class="site-header">
@@ -30,31 +31,71 @@
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
       <!-- EDIT: your project title and a one or two line summary -->
-      <h1 data-scramble>Your project title goes here</h1>
-      <p class="lede">One or two sentences that tell a visitor what this project is about and why it matters.</p>
+      <h1 data-scramble>Five years of district report cards</h1>
+      <p class="lede">What India's Performance Grading Index for Districts (PGI-D) says about school education from 2018-19 to 2023-24: how scores moved, which districts look alike, and whether next year's grade can be predicted.</p>
     </div>
   </section>
 
   <main class="wrap prose">
 
-    <!-- EDIT: describe the problem statement (PS) your team was given -->
     <h2>Problem statement</h2>
-    <p>Describe the problem your team is solving. Say what question you are trying to answer and what the final outcome should look like.</p>
-    <p>Add more paragraphs by copying a &lt;p&gt; line like this one.</p>
-
-    <h2>Dataset</h2>
-    <p>Where the data comes from, how many rows and columns it has, and what each important column means.</p>
-
-    <h2>Approach</h2>
-    <p>Briefly explain the steps you followed, from cleaning the data to producing the final results.</p>
+    <p>Every year the Ministry of Education grades each district in India out of 600 points on the quality of its school education system. Five district-level releases are public, but each one is usually read on its own. Nobody has lined them up to ask what changed over the whole period.</p>
+    <p>We set out to answer four questions:</p>
     <ul>
-      <li>Step or method one</li>
-      <li>Step or method two</li>
-      <li>Step or method three</li>
+      <li>How did national and category-level scores change across the five releases, and what happened during the COVID years?</li>
+      <li>Do districts fall into distinct groups, and what separates those groups?</li>
+      <li>Can a district's grade, and its next-year score, be predicted from its category scores?</li>
+      <li>Which categories rise and fall together, and what drives unusually large year-to-year swings?</li>
     </ul>
 
+    <h2>Dataset</h2>
+    <p>The <strong>Performance Grading Index for Districts (PGI-D)</strong> is published by the Department of School Education and Literacy, Ministry of Education, Government of India. It is built from UDISE+ records, the National Achievement Survey and data submitted by the districts themselves.</p>
+
+    <ul class="stats" aria-label="Dataset at a glance">
+      <li><b>5</b><span>district releases: 2018-19 to 2021-22, and 2023-24</span></li>
+      <li><b>3,736</b><span>district-year rows after cleaning</span></li>
+      <li><b>877</b><span>unique districts across all years</span></li>
+      <li><b>643</b><span>districts present in all five years</span></li>
+    </ul>
+
+    <p>Each district gets a score in six categories that add up to 600 points:</p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Category</th><th>Short</th><th class="num">Max points</th><th>What it measures</th></tr></thead>
+        <tbody>
+          <tr><td>Outcomes</td><td>OC</td><td class="num">290</td><td>Learning outcomes in Language and Maths, enrolment, retention, teacher availability</td></tr>
+          <tr><td>Effective Classroom Transaction</td><td>ECT</td><td class="num">90</td><td>Regular formative assessment, use of learning material, flagship programmes</td></tr>
+          <tr><td>Infrastructure, Facilities, Student Entitlements</td><td>IF&amp;SE</td><td class="num">51</td><td>Labs, libraries, uniforms, study material, scholarships</td></tr>
+          <tr><td>School Safety and Child Protection</td><td>SS&amp;CP</td><td class="num">35</td><td>Counsellors, safety training, disaster plans, health check-ups</td></tr>
+          <tr><td>Digital Learning</td><td>DL</td><td class="num">50</td><td>Internet for teaching, computer-aided learning, student-to-computer ratio</td></tr>
+          <tr><td>Governance Processes</td><td>GP</td><td class="num">84</td><td>Use of funds, cluster coordinators, attendance monitoring, school leadership</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>A district's total decides its grade, in bands 10 percentage points wide: Akanshi at the bottom, then Prachesta-3, Prachesta-2 and Prachesta-1, Uttam, Ati-Uttam, and Utkarsh and Daksh at the top. The 2023-24 release uses a revised 10-tier scale with new labels such as Uttam-2 and Uttam-3. There is no district release for 2022-23.</p>
+    <p class="note">Source: <a href="https://dpgi.udiseplus.gov.in/">PGI-D, Department of School Education and Literacy</a>. Used under the Government Open Data License, India (GODL-India).</p>
+
+    <h2>Approach</h2>
+    <p>The analysis is a five-step Python pipeline. Each step reads the cleaned data from step 1 and writes its own figures and tables.</p>
+    <ol>
+      <li><strong>Preprocessing</strong> (Affan Pathan). The five releases do not share a format, so cleaning came first:
+        <ul>
+          <li>read every file as UTF-8 with the byte-order mark stripped;</li>
+          <li>drop the serial-number column that only 2020-21 and 2021-22 have;</li>
+          <li>collapse line breaks hidden inside cells of the 2023-24 file;</li>
+          <li>map eight spellings of state names to one form (for example "Maharastra" to "Maharashtra");</li>
+          <li>fix district names that are spelled differently across years by keeping the most common spelling;</li>
+          <li>convert every category score to a percentage of its maximum so categories can be compared.</li>
+        </ul>
+      </li>
+      <li><strong>Exploratory analysis</strong> (Sameer Chakrawarti). National and category trends, grade distributions, grade-to-grade movement, and the COVID window.</li>
+      <li><strong>Dimensionality reduction and clustering</strong> (Sreejita Chatterjee). PCA on the six category scores, K-Means with k chosen by silhouette score, Ward hierarchical clustering of states, and how districts moved between clusters from 2018-19 to 2023-24.</li>
+      <li><strong>Classification and regression</strong> (Maitreyee Kumbhojkar). Decision Tree, Random Forest and Gradient Boosting to predict grade, trained on 2018-19 to 2021-22 and tested on 2023-24; linear and Random Forest regressors for the overall score and for next year's score.</li>
+      <li><strong>Association rules, correlation and anomalies</strong> (Moolinti Vaishnavi). Apriori on Low/Medium/High category tiers, yearly Pearson and Spearman correlations, rank stability, and flagging unusually large year-to-year moves.</li>
+    </ol>
+
     <h2>Tools used</h2>
-    <p>Python, pandas, matplotlib (replace with your own list).</p>
+    <p>Python with pandas and NumPy for cleaning, scikit-learn for PCA, clustering and the models, SciPy for statistical tests and hierarchical clustering, mlxtend for association rules, and Matplotlib and seaborn for figures. The interactive charts on the results page use Plotly.js.</p>
 
     <p class="next"><a class="button" href="results.html">See the results</a> <a class="button alt" href="team.html">Meet the team</a></p>
   </main>

@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="stylesheet" href="page.css">
 </head>
 <body>
   <header class="site-header">
@@ -30,30 +31,70 @@
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
       <h1 data-scramble>Results</h1>
-      <p class="lede">Graphs from the project, with an explanation of what each one shows.</p>
+      <p class="lede">Scores rose for three years, then fell hard in 2023-24. Two kinds of district emerge, grades are predictable, and one category is behind more sudden swings than any other.</p>
     </div>
   </section>
 
   <main class="wrap">
 
     <!--
+      HOW THIS PAGE WORKS
+      Every figure is a normal PNG in images/. On figures marked data-chart="...",
+      js/charts.js swaps the PNG for an interactive chart drawn from js/data.js.
+      If JavaScript or Plotly is not available, the PNG is shown instead.
+      js/data.js is generated: run  python src/export_team08.py <path to js/data.js>
+      in the analysis repo after rerunning the pipeline. Do not edit it by hand.
+
       HOW TO ADD A GRAPH
       1. Save your image inside this team's "images" folder (for example images/graph1.png).
       2. Copy everything from "BEGIN RESULT" to "END RESULT" and paste it below the last result.
       3. Change the image name, the alt text, the title and the explanation.
     -->
 
+    <section class="chapter">
+      <h2>1. Five years of scores</h2>
+      <p>National averages, grade bands and category trends across the five releases.</p>
+    </section>
+
     <!-- BEGIN RESULT -->
-    <section class="result">
-      <figure>
-        <!-- EDIT: replace the src with images/your-graph.png -->
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 1. Short caption for the graph.</figcaption>
+    <section class="result wide">
+      <figure data-chart="trend">
+        <img src="images/category-trajectories.png" alt="Line chart of the mean score in each of the six categories, as a percentage of the category maximum, for each release from 2018-19 to 2023-24">
+        <figcaption>Figure 1. Mean score of all districts, overall and per category, as a percentage of the maximum. There is no 2022-23 release, so the last step covers two years.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Scores climbed until 2020-21, then fell sharply in 2023-24</h2>
+        <p>The national mean rose from 57.0% (341.9 of 600 points) in 2018-19 to 60.0% in 2020-21, slipped to 57.7% in 2021-22 and dropped to 48.0% (287.8 points) in 2023-24.</p>
+        <p>Digital Learning is the weakest category in every year, between 23% and 31% of its maximum. It is also the only category that rose in 2023-24, when every other category fell.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure data-chart="grades">
+        <img src="images/grade-counts.png" alt="Bar chart of the number of districts in each grade for each release">
+        <figcaption>Figure 2. Share of districts in each grade. Uttam-2 and Uttam-3 (2023-24 only) are grouped with Uttam, and the rare Akanshi grades with Prachesta-3.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>The grade distribution shifted down a full band</h2>
+        <p>In 2018-19, 36.8% of districts were graded Uttam and a further 6.8% Ati-Uttam. In 2023-24 only 41 districts held an Uttam grade (40 in Uttam-3, one in Uttam-2) and none were Ati-Uttam.</p>
+        <p>Prachesta-2 (40 to 50%) became the most common grade in 2023-24, with 355 districts (45.1%).</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure data-chart="windows">
+        <img src="images/category-shifts.png" alt="Bar chart of the change in each category's mean score between 2019-20 and 2021-22">
+        <figcaption>Figure 3. Change in each category's mean score, in percentage points, over the COVID window (2019-20 to 2021-22) and the last gap (2021-22 to 2023-24).</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>COVID hit learning, not paperwork</h2>
+        <p>Over the COVID window, Outcomes fell by 6.0 points, the largest drop of any category. Outcomes is the category built on student assessment (the National Achievement Survey of 2021), so this is the most direct trace of learning loss in the data.</p>
+        <p>Meanwhile ECT (+6.8), SS&amp;CP (+6.0) and GP (+3.0) rose. These are built from administrative and process indicators, which districts could keep reporting while classrooms were closed.</p>
+        <p>The 2021-22 to 2023-24 drop has the opposite shape: almost every category fell at once, SS&amp;CP by 33.4 points and ECT by 23.0, while only DL rose (+5.0).</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -61,13 +102,240 @@
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 2. Short caption for the graph.</figcaption>
+        <img src="images/grade-transitions.png" alt="Heatmaps of how many districts moved from each grade to each other grade between consecutive releases">
+        <figcaption>Figure 4. Share of districts moving from each grade (rows) to each grade (columns), pooled over all consecutive releases.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Most districts keep their grade</h2>
+        <p>The diagonal dominates: 58% of Prachesta-1 districts are still Prachesta-1 in the next release, and Uttam (55%), Prachesta-2 (57%) and Prachesta-3 (54%) are similar. Most of the remaining moves are to a neighbouring grade; jumps of two or more grades are uncommon.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <section class="chapter">
+      <h2>2. What separates districts</h2>
+      <p>Dimensionality reduction and clustering on the six category scores of 2023-24 (788 districts).</p>
+    </section>
+
+    <!-- BEGIN RESULT -->
+    <section class="result wide">
+      <figure data-chart="pca">
+        <img src="images/kmeans-clusters.png" alt="Scatter plot of districts on the first two principal components, coloured by K-Means cluster">
+        <figcaption>Figure 5. Each dot is a district in 2023-24, placed by its first two principal components and coloured by K-Means cluster. Arrows show how each category loads on the two components.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Two kinds of district, split by safety and digital learning</h2>
+        <p>The first principal component explains 52.8% of the variance and loads on ECT, SS&amp;CP and DL together, so it works as a general capacity axis. The second (17.2%) is almost entirely GP.</p>
+        <p>K-Means finds two clusters (the silhouette score peaks at k = 2, 0.309). They differ most on SS&amp;CP and DL, not on learning Outcomes:</p>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Cluster</th><th class="num">OC</th><th class="num">ECT</th><th class="num">IF&amp;SE</th><th class="num">SS&amp;CP</th><th class="num">DL</th><th class="num">GP</th><th class="num">Districts</th></tr></thead>
+            <tbody>
+              <tr><td>Weaker</td><td class="num">39.3</td><td class="num">52.9</td><td class="num">48.7</td><td class="num">31.5</td><td class="num">18.5</td><td class="num">55.6</td><td class="num">381</td></tr>
+              <tr><td>Stronger</td><td class="num">45.4</td><td class="num">71.0</td><td class="num">61.9</td><td class="num">59.1</td><td class="num">43.1</td><td class="num">60.0</td><td class="num">407</td></tr>
+              <tr><td>Gap</td><td class="num">6.1</td><td class="num">18.1</td><td class="num">13.2</td><td class="num">27.6</td><td class="num">24.6</td><td class="num">4.4</td><td class="num"></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Mean score as % of category maximum, 2023-24.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/elbow-silhouette.png" alt="Elbow curve of K-Means inertia and silhouette score for k from 2 to 10">
+        <figcaption>Figure 6. Choosing k: inertia (left) and silhouette score (right) for k = 2 to 10.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Why two clusters</h2>
+        <p>The inertia curve falls smoothly with no clear elbow, so we chose k by silhouette score. It is highest at k = 2 (0.309) and stays at 0.26 or below for every k from 3 to 10.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/dendrogram.png" alt="Dendrogram of states and union territories clustered by their mean district category profile">
+        <figcaption>Figure 7. Ward-linkage clustering of states by their mean district profile, 2023-24.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>The split holds at state level too</h2>
+        <p>Clustering states by their average district profile and cutting the tree into two groups agrees with the K-Means majority label of each state's districts (adjusted Rand index 0.888). The two-group structure is not an artefact of one method.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure data-chart="states">
+        <img src="images/state-inequality.png" alt="Scatter plot of states by mean district score and standard deviation of district scores">
+        <figcaption>Figure 8. Each dot is a state or UT: mean district score against how spread out its districts are (standard deviation), 2023-24. Lines mark the median of each.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>A state average can hide weak districts</h2>
+        <p>State means range from 32.5% (Meghalaya) to 64.0% (Punjab). States in the high-mean, low-spread corner are strong everywhere. States with a high mean and a wide spread have strong districts next to weak ones, which a state-level average would hide.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/cluster-shift.png" alt="Two by two table of districts by cluster in 2018-19 and in 2023-24">
+        <figcaption>Figure 9. Cluster membership in 2018-19 against 2023-24, for the 634 districts present in both years.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>A third of districts changed cluster</h2>
+        <p>237 of 634 districts (37.4%) changed cluster between 2018-19 and 2023-24: 189 moved from cluster 1 to cluster 0 and 48 from cluster 0 to cluster 1. The cluster structure is real, but membership is far from fixed over five years.</p>
+        <p class="note">Clusters are fitted separately for each year and matched by their centres, so a move means a district changed position relative to its peers.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <section class="chapter">
+      <h2>3. Predicting grades and scores</h2>
+      <p>Models trained on 2018-19 to 2021-22 (2,927 district-years) and tested on 2023-24 (788 districts), so the test year is genuinely unseen.</p>
+    </section>
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/confusion-matrix.png" alt="Confusion matrix of the Random Forest grade classifier on the 2023-24 test set">
+        <figcaption>Figure 10. Confusion matrix of the Random Forest grade classifier on 2023-24.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Grades can be predicted with 83% accuracy</h2>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Model</th><th class="num">Test accuracy</th></tr></thead>
+            <tbody>
+              <tr><td>Decision Tree (depth 6)</td><td class="num">72.1%</td></tr>
+              <tr><td>Gradient Boosting</td><td class="num">82.5%</td></tr>
+              <tr class="best"><td>Random Forest (300 trees, depth 8)</td><td class="num">83.0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Random Forest is best. It is strongest on the two largest grades: Prachesta-1 (precision 0.85, recall 0.93) and Prachesta-2 (0.88, 0.87). Grades held by only one district in the test year cannot be learned.</p>
+        <p>A single tree overfits the rare grades; averaging 300 shallow trees removes most of that variance.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/feature-importance.png" alt="Bar chart of Random Forest feature importance for each category">
+        <figcaption>Figure 11. Which categories the Random Forest classifier relies on.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Outcomes and GP decide the grade</h2>
+        <p>Outcomes and GP carry the most weight in predicting grade, with ECT and DL close behind. SS&amp;CP and IF&amp;SE matter least, even though SS&amp;CP is what separates the two clusters. Outcomes alone is worth 290 of the 600 points, so this is expected.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/regression-fit.png" alt="Scatter of predicted against actual overall score for the Lasso regression">
+        <figcaption>Figure 12. Lasso regression: predicted against actual overall score.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>The overall score is a sum, and the models confirm it</h2>
+        <p>Linear, Ridge and Lasso regression all reach R² = 0.9999 (mean absolute error 0.07 points) when predicting the overall score from the six categories. That is a sanity check rather than a finding: the overall score is the sum of the categories. Random Forest does slightly worse (R² = 0.988) because trees cannot reproduce an exact sum.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/yoy-prediction.png" alt="Two scatter plots comparing next-year score predictions from a Random Forest with a no-change baseline">
+        <figcaption>Figure 13. Predicting next release's score: Random Forest (left) against assuming nothing changes (right).</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>This year's profile predicts next year's score</h2>
+        <p>On 2,853 pairs of consecutive releases, a Random Forest given this year's six category scores predicts next year's overall score with R² = 0.730 (mean error 4.2 points). Assuming the score stays the same gives only R² = 0.514 (5.2 points). The category profile carries real information about where a district is heading.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <section class="chapter">
+      <h2>4. Patterns and anomalies</h2>
+      <p>Correlations between categories, association rules, how stable the rankings are, and which districts moved unusually far.</p>
+    </section>
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure data-chart="corr">
+        <img src="images/correlation-heatmap.png" alt="Heatmaps of Pearson and Spearman correlation between the six categories for each year">
+        <figcaption>Figure 14. Pearson correlation between category scores. Cells marked ns are not significant at the 5% level.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>ECT and SS&amp;CP move together</h2>
+        <p>ECT and SS&amp;CP are the most tightly linked pair (r = 0.80 pooled over all years). 14 of the 15 category pairs are significantly correlated in every year; the exception is IF&amp;SE with GP in 2023-24. Outcomes is the most independent category, with the weakest links to the infrastructure and governance indicators.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/association-rules.png" alt="Scatter of association rules by support and confidence, coloured by lift">
+        <figcaption>Figure 15. The 836 association rules by support, confidence and lift.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Weaknesses come in bundles</h2>
+        <p>Each category score was turned into a tier (Low below 40%, Medium, High above 70%) and mined with Apriori (minimum support 0.05, confidence 0.6). The strongest rules by lift:</p>
+        <ol class="rules">
+          <li><span class="tag">ECT Medium</span> + <span class="tag">Outcomes Low</span> → <span class="tag">DL Low</span> + <span class="tag">SS&amp;CP Low</span><br><span class="note">61% of the time, 3.7 times more often than chance</span></li>
+          <li><span class="tag">ECT Medium</span> + <span class="tag">Outcomes Low</span> → <span class="tag">SS&amp;CP Low</span><br><span class="note">61% of the time, lift 3.6</span></li>
+          <li><span class="tag">IF&amp;SE Medium</span> + <span class="tag">SS&amp;CP Low</span> → <span class="tag">DL Low</span> + <span class="tag">ECT Medium</span><br><span class="note">68% of the time, lift 3.3, in 8.3% of all district-years</span></li>
+        </ol>
+        <p>A district weak in SS&amp;CP is usually weak in DL as well, and the pair goes with low Outcomes.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <div class="prose">
+        <h2>Rankings are stable, but less so every year</h2>
+        <p>Spearman correlation of district rankings between consecutive releases, for the 643 districts present in all five:</p>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Between</th><th class="num">ρ</th></tr></thead>
+            <tbody>
+              <tr><td>2018-19 and 2019-20</td><td class="num">0.924</td></tr>
+              <tr><td>2019-20 and 2020-21</td><td class="num">0.885</td></tr>
+              <tr><td>2020-21 and 2021-22</td><td class="num">0.855</td></tr>
+              <tr><td>2021-22 and 2023-24</td><td class="num">0.760</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>All four are significant. The ordering of districts is durable, but it loosens with every release, most of all across the two-year gap to 2023-24.</p>
+      </div>
+      <div class="prose">
+        <h2>SS&amp;CP is behind the most sudden swings</h2>
+        <p>We flagged a move as unusual when a district's change differed from the national change by more than 1.5 standard deviations: 292 of 2,948 moves (9.9%). For each, the "driver" is the category that changed most.</p>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Driver</th><th class="num">Up</th><th class="num">Down</th><th class="num">Total*</th></tr></thead>
+            <tbody>
+              <tr><td>SS&amp;CP</td><td class="num">48</td><td class="num">63</td><td class="num">115</td></tr>
+              <tr><td>GP</td><td class="num">38</td><td class="num">16</td><td class="num">54</td></tr>
+              <tr><td>ECT</td><td class="num">35</td><td class="num">12</td><td class="num">47</td></tr>
+              <tr><td>Outcomes</td><td class="num">6</td><td class="num">24</td><td class="num">30</td></tr>
+              <tr><td>IF&amp;SE</td><td class="num">13</td><td class="num">14</td><td class="num">28</td></tr>
+              <tr><td>DL</td><td class="num">8</td><td class="num">9</td><td class="num">18</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">* Includes 6 districts whose score did not change at all from 2021-22 to 2023-24. They count as unusual because nearly every other district fell by about 10 points.</p>
+        <p>DL is the weakest category on average but the least common driver: its problem is a low floor everywhere, not volatility.</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -76,9 +344,25 @@
       <!-- EDIT: sum up the main findings -->
       <h2>Anomalies, observations and patterns</h2>
       <ul>
-        <li><strong>Anomaly:</strong> something unusual in the data and a likely reason for it.</li>
-        <li><strong>Observation:</strong> something you measured or noticed.</li>
-        <li><strong>Pattern:</strong> a trend that repeats across the dataset.</li>
+        <li><strong>Anomaly:</strong> the 2023-24 drop is broad and steep across nearly every category at once (SS&amp;CP down 33 points in two years) and arrives with a new 10-tier grade scale. That looks more like a change in how scores are produced than a real collapse, but we could not find a source documenting the exact change for PGI-D.</li>
+        <li><strong>Anomaly:</strong> six districts have exactly the same total in 2021-22 and 2023-24 while their category scores changed.</li>
+        <li><strong>Observation:</strong> COVID's footprint is narrow. From 2019-20 to 2021-22 Outcomes, the assessment-based category, fell by 6 points; the other categories moved by less than 1 point or rose.</li>
+        <li><strong>Observation:</strong> Digital Learning is the lowest category in every year, even for the stronger cluster (43%).</li>
+        <li><strong>Pattern:</strong> ECT and SS&amp;CP rise and fall together and dominate the association rules; SS&amp;CP is also the most common driver of sudden swings.</li>
+        <li><strong>Pattern:</strong> district rankings are stable but loosen with every release (ρ from 0.92 to 0.76).</li>
+      </ul>
+    </div>
+
+    <div class="prose conclusion">
+      <h2>Conclusions</h2>
+      <p>Five releases of PGI-D, cleaned into one dataset of 3,736 district-years, tell a consistent story. Scores improved until 2020-21 and then fell sharply in 2023-24, a drop that coincides with a change in the grading scale and should be treated as a break in the series, not simply as decline.</p>
+      <p>Districts fall into two groups that differ mainly in child safety provisions and digital learning rather than in learning outcomes. Grades are predictable (83% accuracy on an unseen year), and a district's category profile predicts its next score better than assuming nothing changes, which makes an early-warning tool for districts at risk of slipping a grade realistic.</p>
+      <p>The clearest levers are Digital Learning, which is low almost everywhere, and School Safety and Child Protection, which separates the two groups of districts and is the most common driver of sudden swings.</p>
+      <h3>Limitations</h3>
+      <ul>
+        <li>The public files stop at category level; the 83 underlying indicators are not available.</li>
+        <li>There is no 2022-23 district release, so the last comparison spans two years.</li>
+        <li>Rare grades have too few districts for the classifiers to learn.</li>
       </ul>
     </div>
 
@@ -89,5 +373,8 @@
     <div class="wrap">MDS Project, IIT Dharwad</div>
   </footer>
   <script src="../../assets/site.js" defer></script>
+  <script src="js/plotly-cartesian-2.35.3.min.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/charts.js" defer></script>
 </body>
 </html>
