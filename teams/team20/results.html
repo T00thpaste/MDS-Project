@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="stylesheet" href="page.css">
 </head>
 <body>
   <header class="site-header">
@@ -30,7 +31,7 @@
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
       <h1 data-scramble>Results</h1>
-      <p class="lede">Graphs from the project, with an explanation of what each one shows.</p>
+      <p class="lede">From cleaning 240,000 museum records to predicting artwork type and online page views, one graph at a time.</p>
     </div>
   </section>
 
@@ -46,14 +47,13 @@
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <!-- EDIT: replace the src with images/your-graph.png -->
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 1. Short caption for the graph.</figcaption>
+        <img src="images/01-missing-values.png" alt="Horizontal bar chart of the percentage of missing values in each column, with an 80% threshold line; audio, videos, entries, labeltext and nine other columns lie beyond it">
+        <figcaption>Figure 1. Percentage of missing values in each column of the raw data, with the 80% removal threshold.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>The raw data needed substantial cleaning</h2>
+        <p>Thirteen of the 68 raw columns are more than 80% empty and were removed: audio, videos, entries, labeltext, style, commentary, edition, state, signed, details, description, period and periodid. Audio and videos are almost completely absent.</p>
+        <p>Four more columns (medium, provenance, copyright and standard reference number) are between 58% and 79% empty. They fall below the threshold and were kept for analysis.</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -61,13 +61,136 @@
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 2. Short caption for the graph.</figcaption>
+        <img src="images/02-classifications.png" alt="Horizontal bar chart of the 20 most common artwork classifications, led by Photographs, Prints, Drawings, Coins and Archival Material">
+        <figcaption>Figure 2. The 20 most common artwork classifications.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Five classes make up 85% of the collection</h2>
+        <p>Photographs (82,212), Prints (68,369), Drawings (26,237), Coins (19,374) and Archival Material (8,086) together account for 204,278 records, or 85.1% of the dataset. The sixth class, Paintings, has only 5,747.</p>
+        <p>This concentration is why the classification task focuses on these five classes: it keeps the problem practical while covering most of the collection.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result wide">
+      <figure>
+        <img src="images/03-pageviews-distribution.png" alt="Two histograms of total page views: on a linear scale almost all records fall in the first bar; on a log scale the distribution is spread out and right-skewed">
+        <figcaption>Figure 3. Distribution of total page views on a linear scale (left) and as log(1 + page views) (right).</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Page views are highly skewed</h2>
+        <p>The median artwork has 7 page views, the mean is 44.1 and the maximum is 68,475. On a linear scale almost every record falls into the first bar, so a small number of very popular records dominate.</p>
+        <p>After the log(1 + page views) transform the distribution becomes readable. The regression task predicts this transformed value so that a few high-traffic records do not dominate the model.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/04-popularity-by-classification.png" alt="Box plots of log page views for the main classifications; Paintings have the highest median, while Photographs, Fragments and Artists' Tools are among the lowest">
+        <figcaption>Figure 4. Log page views for the main artwork classifications.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>The largest classes are not the most viewed</h2>
+        <p>Paintings have the highest median engagement, followed by Ritual Implements, Manuscripts and Sculpture. Photographs, the largest class in the collection, are near the bottom, along with Coins and Archival Material.</p>
+        <p>Most classes have a wide spread and many high-view outliers. Photographs in particular include some heavily viewed records, even though the typical photograph receives few views.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/05-department-classification-heatmap.png" alt="Heatmap of record counts by museum department and classification, with most departments concentrated in a single classification">
+        <figcaption>Figure 5. Number of records in the main departments and classifications.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Departments are closely tied to classifications</h2>
+        <p>Most departments hold mainly one type of object: the Department of Photographs holds 55,425 photographs, the Department of Prints 57,376 prints, the Department of Ancient and Byzantine Art &amp; Numismatics 18,645 coins, the Department of Drawings 15,895 drawings, and Archives 1,820 archival items.</p>
+        <p>The Busch-Reisinger Museum, the Department of Asian Art and a few smaller departments are the exceptions, holding a mix of photographs, prints, drawings and other objects.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result wide">
+      <figure>
+        <img src="images/06-confusion-matrices.png" alt="Three confusion matrices for Random Forest, Gradient Boosting and Logistic Regression on the five artwork classes">
+        <figcaption>Figure 6. Confusion matrices for the three classifiers on the held-out test set (40,856 records).</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Tree models classify artworks with about 98.5% accuracy</h2>
+        <ul>
+          <li>Gradient Boosting: 0.9856 accuracy; 0.99 weighted F1.</li>
+          <li>Random Forest: 0.9844 accuracy; 0.98 weighted F1.</li>
+          <li>Logistic Regression: 0.8628 accuracy; 0.86 weighted F1.</li>
+        </ul>
+        <p>Coins are almost always identified correctly (3,871 of 3,875 for Gradient Boosting). The most common error for the tree models is Archival Material predicted as Photographs, which gives Archival Material the lowest recall (0.90 for Gradient Boosting).</p>
+        <p>Logistic Regression, which draws linear boundaries between classes, confuses Photographs and Prints about a thousand times in each direction. This gap suggests the classes are separated by non-linear combinations of features.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/07-feature-importance.png" alt="Horizontal bar chart of the 20 most important Random Forest features, led by department, rank and century">
+        <figcaption>Figure 7. The 20 most important features in the Random Forest classifier.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Department is the strongest predictor</h2>
+        <p>The encoded department is the most important feature by a clear margin, followed by rank, century, the numeric century and years in the collection.</p>
+        <p>This matches Figure 5: an artwork's type is predicted mainly from which department holds it, together with rank and time-related features such as century and years in the collection. The signal is spread across several pieces of metadata rather than a single measurement.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result wide">
+      <figure>
+        <img src="images/08-regression-actual-vs-predicted.png" alt="Three scatter plots of actual versus predicted log page views for Linear Regression, Random Forest and Gradient Boosting, with a perfect-prediction line">
+        <figcaption>Figure 8. Actual versus predicted log page views on the test set (48,000 records).</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Page views are partly predictable from metadata</h2>
+        <ul>
+          <li>Random Forest: R² = 0.6623; MSE = 0.7749; MAE = 0.6754.</li>
+          <li>Gradient Boosting: R² = 0.6088.</li>
+          <li>Ridge Regression: R² = 0.3200.</li>
+          <li>Linear Regression: R² = 0.3137.</li>
+        </ul>
+        <p>The tree models follow the perfect-prediction line much more closely than Linear Regression, which suggests the relationship between metadata and page views is not linear. Page-view columns were excluded from the predictors to avoid leakage.</p>
+        <p>Even the best model leaves about a third of the variation unexplained, so collection metadata explains part of online attention but not all of it.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result wide">
+      <figure>
+        <img src="images/09-kmeans-silhouette.png" alt="Elbow plot of K-Means inertia and line chart of silhouette score for k from 2 to 10; the silhouette score is highest at k = 2 and 3 and lower from k = 4">
+        <figcaption>Figure 9. K-Means inertia (left) and silhouette score (right) for k = 2 to 10, on a 10,000-record sample.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Clustering structure depends on the method</h2>
+        <p>Silhouette scores are highest at k = 2 (0.506) and k = 3 (0.518) and lie between about 0.21 and 0.27 for k = 4 to 10, while the elbow curve shows no sharp bend. Four clusters were used to profile the data, with a silhouette score of 0.208.</p>
+        <p>Other methods give different pictures. DBSCAN finds 20 clusters with 6.1% of points treated as noise (silhouette 0.086), and Ward hierarchical clustering (on a 3,000-record sample) scores 0.519 with very uneven cluster sizes. The collection does not divide into one natural set of groups, so these clusters are best read as exploratory.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/10-association-rules.png" alt="Horizontal bar chart of the ten association rules with the highest lift, led by Department of Drawings and Drawings at 8.38">
+        <figcaption>Figure 10. The ten association rules with the highest lift (50,000-record sample, support of at least 0.05, confidence of at least 0.30).</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Association rules confirm the department link</h2>
+        <p>Apriori found 89 frequent itemsets and 181 rules. The strongest links the Department of Drawings with the Drawings classification (support 0.0675, confidence 0.9207, lift 8.38), followed by the Department of Ancient and Byzantine Art &amp; Numismatics with Coins (lift 8.22).</p>
+        <p>The remaining top rules connect the Busch-Reisinger Museum with German culture, 20th-century works and gifts (lift 4.5 to 5.8). Every one of the top ten involves a department, which supports Figures 5 and 7 with a third method. Lift measures co-occurrence, not cause.</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -76,9 +199,11 @@
       <!-- EDIT: sum up the main findings -->
       <h2>Anomalies, observations and patterns</h2>
       <ul>
-        <li><strong>Anomaly:</strong> something unusual in the data and a likely reason for it.</li>
-        <li><strong>Observation:</strong> something you measured or noticed.</li>
-        <li><strong>Pattern:</strong> a trend that repeats across the dataset.</li>
+        <li><strong>Anomaly:</strong> page views are extremely uneven, from a median of 7 to a maximum of 68,475. About 12% of records are flagged as page-view outliers by the IQR rule; they were kept because they may reflect genuine popularity rather than errors.</li>
+        <li><strong>Anomaly:</strong> Ward clustering's high silhouette score (0.519) comes with very uneven clusters of 2,788, 197, 13 and 2 records, so a good score alone does not guarantee a useful grouping.</li>
+        <li><strong>Observation:</strong> tree ensembles outperform linear models on both tasks: about 98.5% against 86% accuracy for classification, and R² of 0.66 against 0.31 for page-view prediction.</li>
+        <li><strong>Observation:</strong> the most common classes are not the most viewed. Paintings attract the highest typical engagement, while Photographs, the largest class, receive relatively little.</li>
+        <li><strong>Pattern:</strong> the museum's department structure appears throughout the analysis: in the department and classification heatmap, as the most important classification feature, and in the strongest association rules.</li>
       </ul>
     </div>
 

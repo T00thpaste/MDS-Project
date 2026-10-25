@@ -3,5 +3,5 @@
 window.TEAM_INFO = window.TEAM_INFO || {};
 window.TEAM_INFO["team20"] = {
   name: "Team 20",
-  topic: "Project title to be added"
+  topic: "Harvard Art Museums: collection structure and online engagement"
 };

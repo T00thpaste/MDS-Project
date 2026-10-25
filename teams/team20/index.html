@@ -30,8 +30,8 @@
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
       <!-- EDIT: your project title and a one or two line summary -->
-      <h1 data-scramble>Your project title goes here</h1>
-      <p class="lede">One or two sentences that tell a visitor what this project is about and why it matters.</p>
+      <h1 data-scramble>Inside the Harvard Art Museums Collection</h1>
+      <p class="lede">What 240,000 records from the Harvard Art Museums reveal about how the collection is organised, and how far metadata can predict an artwork's type and its online popularity.</p>
     </div>
   </section>
 
@@ -39,22 +39,32 @@
 
     <!-- EDIT: describe the problem statement (PS) your team was given -->
     <h2>Problem statement</h2>
-    <p>Describe the problem your team is solving. Say what question you are trying to answer and what the final outcome should look like.</p>
-    <p>Add more paragraphs by copying a &lt;p&gt; line like this one.</p>
+    <p>The Harvard Art Museums collection data describes each artwork with a mix of historical dates, classifications, cultures, museum departments, acquisition details, counts of images and people, and web-usage measures. This project applies mathematical data-science methods to uncover the structure in this large and heterogeneous collection. We asked four questions:</p>
+    <ul>
+      <li>How is the collection distributed across classifications, cultures, centuries and departments?</li>
+      <li>Can the five most common artwork classes be predicted from the records' metadata?</li>
+      <li>How well can an artwork's online page views be predicted from its metadata?</li>
+      <li>Do the records form natural clusters, and which attributes tend to occur together?</li>
+    </ul>
+    <p>The findings describe patterns and associations in this dataset and the samples used for each task; they do not establish why a particular artwork is classified or viewed the way it is.</p>
 
     <h2>Dataset</h2>
-    <p>Where the data comes from, how many rows and columns it has, and what each important column means.</p>
+    <p>The raw data contains 240,000 artwork records from the Harvard Art Museums collection with 68 attributes. The most important fields are the classification, culture, century and department of each artwork, its creation dates, its accession year and method, its image and people counts, its verification level and its total page views.</p>
+    <p>During cleaning, 13 columns with more than 80% missing values were removed, along with redundant identifiers, contact information, nested JSON fields and URL fields, reducing the data from 68 to 44 columns. Six new features were then engineered. The data contained no duplicate rows or duplicate IDs, so no records were removed.</p>
 
     <h2>Approach</h2>
-    <p>Briefly explain the steps you followed, from cleaning the data to producing the final results.</p>
+    <p>We moved from cleaning and exploration to supervised and unsupervised modelling in six steps:</p>
     <ul>
-      <li>Step or method one</li>
-      <li>Step or method two</li>
-      <li>Step or method three</li>
+      <li><strong>Cleaning:</strong> removed sparse and redundant columns; standardised dates, culture labels, centuries and accession methods; flagged outliers with the IQR rule but kept them as potentially genuine collection characteristics.</li>
+      <li><strong>Feature engineering:</strong> created age of artwork, date range span, has image, has people, years in collection and a numeric century.</li>
+      <li><strong>Exploratory analysis:</strong> distributions, cross-tabulation heatmaps, correlations and comparisons of web engagement across groups.</li>
+      <li><strong>Dimensionality reduction:</strong> PCA on 25 standardised numerical features (16 components retain 90% of the variance) and t-SNE on a 5,000-record sample.</li>
+      <li><strong>Supervised learning:</strong> classification of the five dominant artwork classes from 29 predictors with a stratified 80/20 split (Random Forest, Gradient Boosting, Logistic Regression), and regression of log(1 + page views) with page-view columns excluded to avoid leakage (Linear, Ridge, Random Forest, Gradient Boosting).</li>
+      <li><strong>Unsupervised learning:</strong> K-Means for k = 2 to 10, DBSCAN and Ward hierarchical clustering, and Apriori association-rule mining with support of at least 0.05 and confidence of at least 0.30.</li>
     </ul>
 
     <h2>Tools used</h2>
-    <p>Python, pandas, matplotlib (replace with your own list).</p>
+    <p>Python and Jupyter notebooks, with pandas, NumPy, scikit-learn, mlxtend, matplotlib, seaborn and wordcloud.</p>
 
     <p class="next"><a class="button" href="results.html">See the results</a> <a class="button alt" href="team.html">Meet the team</a></p>
   </main>

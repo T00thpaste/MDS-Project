@@ -1,0 +1,3 @@
+/* Team 20 only: full-width layout for wide multi-panel figures (text goes below the image) */
+.result.wide{grid-template-columns:1fr;gap:1.5rem}
+.result.wide .result-text{max-width:46rem}
