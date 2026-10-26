@@ -30,8 +30,8 @@
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
       <!-- EDIT: your project title and a one or two line summary -->
-      <h1 data-scramble>Your project title goes here</h1>
-      <p class="lede">One or two sentences that tell a visitor what this project is about and why it matters.</p>
+      <h1 data-scramble>Renewable Energy Adoption and Economic Growth: A Cross-Country Data Analysis</h1>
+      <p class="lede">Renewable energy is an important part of the global transition towards sustainable energy systems. However, countries differ considerably in their energy resources, economic conditions, electricity-generation methods and patterns of energy consumption. Our project studies the relationship between renewable electricity adoption, energy consumption and economic development across countries from 1990 to 2024. We use data analysis, visualization, correlation analysis and machine learning to investigate these relationships and identify patterns across countries and over time.</p>
     </div>
   </section>
 
@@ -39,22 +39,237 @@
 
     <!-- EDIT: describe the problem statement (PS) your team was given -->
     <h2>Problem statement</h2>
-    <p>Describe the problem your team is solving. Say what question you are trying to answer and what the final outcome should look like.</p>
-    <p>Add more paragraphs by copying a &lt;p&gt; line like this one.</p>
+    <p>
+        How is renewable energy adoption associated with economic growth, income levels, and energy-use characteristics across countries ?
+    </p>
+    <p>
+Countries around the world are transitioning towards renewable energy, but
+<strong>is economic development associated with a greater shift towards cleaner
+electricity, or does the relationship depend on how countries consume and
+produce energy?</strong> Countries differ in their income levels, energy demand,
+natural resources, and electricity-generation systems. Understanding these
+differences is essential to identifying the patterns behind the global energy
+transition.
+</p>
+    <p>
+Our project investigates <strong>how renewable electricity adoption is
+associated with economic growth, income levels, and energy-use characteristics
+across countries from 1990 to 2024.</strong> Using country-year data, we explore
+long-term renewable-energy trends, compare countries with different energy
+profiles, examine relationships between economic and energy indicators, and
+use machine-learning models to investigate which factors are useful for
+predicting economic development.
+</p>
+    <p>
+The final outcome is a data-driven analysis that combines interactive
+visualizations, cross-country comparisons, correlation analysis, and predictive
+modelling. By comparing Linear Regression with Random Forest Regression, we
+aim to understand how well selected energy and economic indicators can predict
+log GDP per capita and which features contribute most to those predictions.
+<strong>Rather than assuming that renewable energy causes economic growth, our
+project identifies measurable patterns and associations that can help explain
+the relationship between energy transition and economic development.</strong>
+</p> 
 
     <h2>Dataset</h2>
-    <p>Where the data comes from, how many rows and columns it has, and what each important column means.</p>
+    
+    <p>
+      The project combines two public data sources. Energy variables are
+      obtained from the
+      <a href="https://ourworldindata.org/energy" target="_blank"
+         rel="noopener noreferrer">Our World in Data energy dataset</a>,
+      which provides country-level historical series for primary energy use,
+      electricity generation, renewable technologies, energy intensity,
+      and related indicators. Economic variables are obtained from the
+      <a href="https://databank.worldbank.org/source/world-development-indicators"
+         target="_blank" rel="noopener noreferrer">
+        World Bank World Development Indicators (WDI)
+      </a>, using country-year observations.
+    </p>
+
+    <table border="1" cellpadding="6" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th scope="col">Parameter</th>
+          <th scope="col">Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rows</td>
+          <td>7,606</td>
+        </tr>
+        <tr>
+          <td>Country/entity count</td>
+          <td>220</td>
+        </tr>
+        <tr>
+          <td>Year range</td>
+          <td>1990–2024</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <p>
+      The energy dataset contains <strong>7,606 rows</strong>,
+      <strong>220 countries or entities</strong>, and observations spanning
+      <strong>1990–2024</strong>. Each observation represents a country-year.
+      The identifier fields country, ISO code, and year provide the keys
+      used during preprocessing and integration.
+    </p>
+
+    <p>
+      <strong>Core Analytical Variables:</strong> <br>
+      Economic variables include GDP, GDP per capita, GDP growth, inflation,
+      and industry value added. Energy variables include primary energy
+      consumption, electricity generation and demand, energy per capita,
+      and energy intensity. Renewable variables include renewable
+      electricity generation and renewable shares. Technology variables
+      include hydro, solar, and wind electricity generation.
+    </p>
+
 
     <h2>Approach</h2>
-    <p>Briefly explain the steps you followed, from cleaning the data to producing the final results.</p>
+
+    <p>
+      Our project follows a systematic data-science workflow to examine
+      the relationship between renewable energy adoption, energy
+      consumption, and economic development across countries from
+      1990 to 2024. The methodology combines data preprocessing,
+      exploratory analysis, statistical relationships, feature
+      engineering, and predictive modelling.
+    </p>
+
+     <h4><u>Project Workflow</u></h4>
     <ul>
-      <li>Step or method one</li>
-      <li>Step or method two</li>
-      <li>Step or method three</li>
+      <li>
+        <strong>Data Collection and Integration:</strong>
+       The project uses a country-year dataset containing 7,606 original
+      observations from 220 countries and entities over the period
+      1990–2024. It includes historical energy indicators from Our World
+      in Data and economic indicators included in the combined dataset.
+      Country name, ISO code, and year are used to identify and organize
+      individual observations.
+      </li>
+
+      <li>
+        <strong>Data Preprocessing and Cleaning:</strong>
+         We inspected the dataset using Python and pandas, examined missing
+        values, and checked for duplicate records and country-year combinations.
+        No duplicates were found. Three commodity-price columns for oil,
+        natural gas, and coal were removed because they contained 100% missing
+        values. <br>
+        Separate datasets were prepared for analyses requiring complete
+      observations. The complete-case dataset for the selected core
+      variables contained 3,486 observations, while the machine-learning
+      dataset contained 4,013 observations after selecting the required
+      variables and excluding incomplete records. Missing values were
+      not arbitrarily replaced with zeros or averages.
+      </li>
+
+      <li>
+        <strong>Exploratory Data Analysis (EDA):</strong>
+        Exploratory analysis was performed to understand variable
+      distributions and identify patterns across countries and years.
+      Yearly trends in renewable electricity share and GDP growth were
+      plotted. Country-level averages were also used to compare renewable
+      electricity adoption across countries.
+      </li>
+
+      <li>
+        <strong>Correlation and Statistical Analysis:</strong>
+        Pearson and Spearman correlation coefficients were calculated for
+      selected economic and energy variables. Correlation matrices and
+      scatter plots were used to examine relationships involving
+      renewable electricity share, GDP per capita, energy intensity,
+      and energy consumption per capita. Since absolute GDP and energy
+      consumption are influenced by country size, the relationships
+      were interpreted carefully. Correlation indicates association,
+      not proof of causation.
+      </li>
+
+      <li>
+        <strong>Feature Engineering:</strong>
+         Logarithmic transformations using the log1p() function were applied
+      to GDP per capita, energy per capita, energy intensity, and primary
+      energy consumption. These transformations help handle skewed
+      distributions and differences in scale. The transformed variables
+      were used to prepare the inputs and target for predictive modelling
+      </li>
+
+      <li>
+        <strong>Machine Learning:</strong>
+        We implemented Linear Regression and Random Forest Regression
+        to predict log GDP per capita using selected energy and economic
+        features. The models use renewable electricity share, transformed
+        energy variables, inflation, and industry value added as input
+        features.<br>
+        <table border="1" cellpadding="8" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th scope="col">Model</th>
+          <th scope="col">Purpose</th>
+          <th scope="col">Method</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Linear Regression</th>
+          <td>Predict log GDP per capita</td>
+          <td>Models a linear relationship between input variables and the target.</td>
+        </tr>
+        <tr>
+          <th scope="row">Random Forest Regression</th>
+          <td>Predict log GDP per capita</td>
+          <td>Combines multiple decision trees to model potentially non-linear relationships.</td>
+        </tr>
+      </tbody>
+    </table>
+<br>
+The input features include renewable electricity share, log energy
+      per capita, log energy intensity, log primary energy consumption,
+      inflation, and industry value added. The target variable is
+      log GDP per capita.
+      </li>
+
+      <li>
+        <strong>Model Evaluation and Interpretation:</strong>
+        We used a chronological split, training on observations from
+        1990–2019 and testing on observations from 2020–2024. Model
+        performance was evaluated using Mean Absolute Error (MAE),
+        Root Mean Squared Error (RMSE), and R<sup>2</sup>. Feature-importance
+        analysis and actual-versus-predicted plots were also examined
+        to understand predictive performance.
+      </li>
     </ul>
 
+    
     <h2>Tools used</h2>
-    <p>Python, pandas, matplotlib (replace with your own list).</p>
+    <p> The computational workflow is implemented in a Python/Jupyter
+environment using pandas for data manipulation and matplotlib or
+seaborn for visualisation. Scikit-learn is used for model fitting and
+evaluation. Each preprocessing step is implemented as explicit
+notebook code so that the cleaned dataset can be regenerated from the
+raw inputs.</p>
+     <ul>
+      <li>
+        <strong>Python, Jupyter Notebook, pandas and NumPy:</strong>
+        Used for data cleaning, numerical operations, missing-value analysis,
+        and feature engineering.
+      </li>
+
+      <li>
+        <strong>Matplotlib and Seaborn:</strong>
+        Used to create trend graphs, scatter plots, country comparisons,
+        and correlation heatmaps.
+      </li>
+
+      <li>
+        <strong>scikit-learn:</strong>
+        Used to implement Linear Regression and Random Forest Regression,
+        and evaluate models using MAE, RMSE, and R<sup>2</sup>.
+      </li>
+    </ul>
 
     <p class="next"><a class="button" href="results.html">See the results</a> <a class="button alt" href="team.html">Meet the team</a></p>
   </main>
