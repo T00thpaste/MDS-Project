@@ -3,5 +3,5 @@
 window.TEAM_INFO = window.TEAM_INFO || {};
 window.TEAM_INFO["team14"] = {
   name: "Team 14",
-  topic: "Project title to be added"
+  topic: "Renewable Energy Adoption and Economic Growth: A Cross-Country Data Analysis !!"
 };
