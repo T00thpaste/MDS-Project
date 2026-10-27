@@ -8,6 +8,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/style.css">
+  <style>
+    .data-table{width:100%;border-collapse:collapse;margin:1rem 0 .4rem;font-size:.95rem}
+    .data-table th,.data-table td{padding:.5rem .7rem;text-align:left;border-bottom:1px solid rgba(128,128,128,.35)}
+    .data-table th{font-weight:600}
+    .table-wrap{overflow-x:auto}
+    .table-note{font-size:.9rem;opacity:.8;margin:0 0 1.5rem}
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -30,30 +37,45 @@
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
       <h1 data-scramble>Results</h1>
-      <p class="lede">Graphs from the project, with an explanation of what each one shows.</p>
+      <p class="lede">Ozone and PM2.5 across EPA AQS stations: data quality, seasonality, extreme-day behaviour and station clusters, with what each figure shows.</p>
     </div>
   </section>
 
   <main class="wrap">
 
-    <!--
-      HOW TO ADD A GRAPH
-      1. Save your image inside this team's "images" folder (for example images/graph1.png).
-      2. Copy everything from "BEGIN RESULT" to "END RESULT" and paste it below the last result.
-      3. Change the image name, the alt text, the title and the explanation.
-    -->
+    <div class="prose">
+      <h2>Key results at a glance</h2>
+      <ul>
+        <li><strong>Data:</strong> after comparable-measurement cleaning, 2,345,874 ozone observations from 1,362 stations and 394,168 PM2.5 observations from 785 stations; the combined station-day panel has 2,589,427 rows across 1,888 stations (2020 to May 2026).</li>
+        <li><strong>Seasonality:</strong> both pollutants vary significantly by season (Kruskal–Wallis p &lt; 0.001), more strongly for ozone (epsilon-squared 0.1283) than PM2.5 (0.0380).</li>
+        <li><strong>Persistence:</strong> a high day is followed by another high day with probability 0.427 for ozone and 0.320 for PM2.5.</li>
+        <li><strong>Clustering:</strong> K-Means with k = 2 (silhouette 0.8973, Davies–Bouldin 0.2489) separates 60 higher-burden stations from 1,732 typical ones.</li>
+        <li><strong>Forecasting:</strong> a leakage-safe feature and split design is ready, but forecast model accuracy has not been reported yet.</li>
+      </ul>
+      <div class="table-wrap">
+      <table class="data-table">
+        <caption style="text-align:left;font-weight:600;margin-bottom:.4rem">Table 1. Data retained after comparable-measurement cleaning.</caption>
+        <thead><tr><th>Dataset</th><th>Rows</th><th>Stations</th><th>Coverage</th></tr></thead>
+        <tbody>
+          <tr><td>Clean ozone</td><td>2,345,874</td><td>1,362</td><td>2020–May 2026</td></tr>
+          <tr><td>Clean PM2.5</td><td>394,168</td><td>785</td><td>2020–May 2026</td></tr>
+          <tr><td>Station-day panel</td><td>2,589,427</td><td>1,888</td><td>2020–May 2026</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="table-note">The panel is an outer join, so a missing pollutant measurement stays missing and is never read as zero.</p>
+    </div>
 
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <!-- EDIT: replace the src with images/your-graph.png -->
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 1. Short caption for the graph.</figcaption>
+        <img src="images/figure01.png" alt="Heatmap of raw-data missingness by pollutant, year and field.">
+        <figcaption>Figure 1. Raw-data missingness audit by year and field.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Raw-data missingness audit</h2>
+        <p>The heatmap shows why completeness has to be checked by field and year instead of assuming every raw record is equally usable. Event Type is missing for most records, and AQI and Pollutant Standard are partly missing for PM2.5.</p>
+        <p>Core analysis depends on valid dates, station identifiers and concentration values, which are complete. Missing event-type fields are not treated as a meaningful signal and are not used as a model predictor.</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -61,24 +83,224 @@
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 2. Short caption for the graph.</figcaption>
+        <img src="images/figure02.png" alt="Histograms of ozone and PM2.5 concentration with median and P95 lines.">
+        <figcaption>Figure 2. Concentration distributions for ozone and PM2.5.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Ozone is compact, PM2.5 has a long tail</h2>
+        <p>Ozone is comparatively compact and symmetric (skewness 0.127). PM2.5 is strongly right-skewed (skewness 14.40, maximum 593 µg/m³).</p>
+        <p>This supports reporting medians and interquartile ranges next to means, and trying robust scaling or transformed targets when modelling.</p>
       </div>
     </section>
     <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/figure03.png" alt="Normal Q-Q plots for ozone and PM2.5.">
+        <figcaption>Figure 3. Normal Q–Q plots for the pollutant distributions.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Departures from normality</h2>
+        <p>Ozone follows the reference line closely apart from slight tail deviations. PM2.5 bends sharply away in the upper tail, so it is clearly non-normal.</p>
+        <p>Non-parametric seasonal tests are therefore appropriate, and extreme observations should be investigated rather than automatically deleted.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/figure04.png" alt="Line chart of monthly mean ozone and PM2.5 concentration from 2020 to 2026.">
+        <figcaption>Figure 4. Monthly pollution trends.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Monthly trends</h2>
+        <p>Monthly mean concentrations show cyclical variation, particularly for ozone. Ozone sits near zero on this chart only because it is measured in ppm while PM2.5 is in µg/m³.</p>
+        <p>Season and calendar variables should be part of the forecasting features, and alerts should be timed to pollutant-specific seasonal patterns.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/figure05.png" alt="Boxplots of ozone and PM2.5 concentration by season.">
+        <figcaption>Figure 5. Seasonal concentration distributions.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Seasonal distributions</h2>
+        <p>Both pollutants differ across seasons (Kruskal–Wallis p < 0.001), with a larger seasonal effect for ozone (epsilon-squared 0.1283) than for PM2.5 (0.0380).</p>
+        <p>Ozone is highest in spring and summer. Boxplots also show spread and outliers that a mean-only comparison would hide.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/figure06.png" alt="Scatter plot of paired station-day ozone and PM2.5 means.">
+        <figcaption>Figure 6. Paired station-day ozone and PM2.5 concentrations.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Ozone versus PM2.5 on the same day</h2>
+        <p>Across 150,615 paired station-days there is almost no linear association (Pearson r = 0.00225, p = 0.383). The rank correlation is statistically significant (Spearman rho = 0.03091) but practically very weak.</p>
+        <p>One pollutant should not be used as a simple linear substitute for the other. Event-level relationships can still exist: P(PM2.5 high | ozone high) = 0.1979.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/figure07.png" alt="Grouped bar chart of seasonal extreme-day probability for ozone and PM2.5.">
+        <figcaption>Figure 7. Seasonal high/extreme risk using station-relative thresholds.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Seasonal high-day risk</h2>
+        <p>High and extreme days are defined against each station's own 90th and 95th percentiles. The report gives ozone high-day risk as higher in spring (0.1576) and summer (0.1440) than winter (0.0181).</p>
+        <p>PM2.5 high-day risk is highest in summer (0.1401) and winter (0.1348). These patterns can be used to tailor seasonal alerts by pollutant.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/figure08.png" alt="Silhouette, Calinski–Harabasz and Davies–Bouldin scores for K-Means with k from 2 to 10.">
+        <figcaption>Figure 8. K-Means validation across candidate cluster counts.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Choosing the number of clusters</h2>
+        <p>The report selects k = 2, with silhouette 0.8973 and Davies–Bouldin index 0.2489. Silhouette is highest at k = 2, while Calinski–Harabasz keeps rising with k.</p>
+        <p>These internal metrics support a compact partition in this feature space, but they do not prove the clusters are optimal or stable across other samples or features.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/figure09.png" alt="Scatter plot of stations on the first two principal components, coloured by cluster.">
+        <figcaption>Figure 9. PCA projection of standardized station features by cluster.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Cluster separation in PCA space</h2>
+        <p>Standardized station features reduced to two principal components. Cluster 0 (60 stations) sits apart along the first component, and Cluster 1 (1,732 stations) forms the dense main group.</p>
+        <p>This is a visual diagnostic, not a geographic map or proof of causal differences. Read it together with the cluster profile table.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/figure10.png" alt="Map of EPA monitoring stations across the contiguous US coloured by cluster.">
+        <figcaption>Figure 10. Geographic distribution of station clusters.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Where the clusters are located</h2>
+        <p>The higher-burden group is spread across the country, so cluster membership should not be read as one single region.</p>
+        <p>Use the map to guide station-level review and monitoring prioritisation, while checking local coverage gaps.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/figure11.png" alt="STL decomposition of an ozone time series into trend, seasonal and residual components.">
+        <figcaption>Figure 11. STL decomposition of an example ozone time series (station 49-021-0005-1).</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Trend, season and residual for one station</h2>
+        <p>The decomposition separates a slowly rising trend, a clear yearly seasonal cycle and residual noise for one representative ozone station.</p>
+        <p>It shows why both trend and recurring seasonality matter. Because it is a single example station, it should not be generalized to every station without validation.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <div class="prose">
+      <h2>Statistics and extreme events</h2>
+      <div class="table-wrap">
+      <table class="data-table">
+        <caption style="text-align:left;font-weight:600;margin-bottom:.4rem">Table 2. Overall concentration statistics.</caption>
+        <thead><tr><th>Measure</th><th>Ozone</th><th>PM2.5</th></tr></thead>
+        <tbody>
+          <tr><td>Mean</td><td>0.03236 ppm</td><td>8.04 µg/m³</td></tr>
+          <tr><td>Median</td><td>0.03229 ppm</td><td>6.80 µg/m³</td></tr>
+          <tr><td>Standard deviation</td><td>0.01071 ppm</td><td>6.51 µg/m³</td></tr>
+          <tr><td>P90</td><td>0.04606 ppm</td><td>13.90 µg/m³</td></tr>
+          <tr><td>P95</td><td>0.05006 ppm</td><td>17.30 µg/m³</td></tr>
+          <tr><td>P99</td><td>—</td><td>29.10 µg/m³</td></tr>
+          <tr><td>Maximum</td><td>0.13594 ppm</td><td>593.0 µg/m³</td></tr>
+          <tr><td>Skewness</td><td>0.127</td><td>14.40</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="table-note">PM2.5 has far greater relative variability and a heavy upper tail. The 593 µg/m³ maximum may be a real episode or a data issue and should be source-checked, not blindly discarded.</p>
+      <div class="table-wrap">
+      <table class="data-table">
+        <caption style="text-align:left;font-weight:600;margin-bottom:.4rem">Table 3. Extreme-event frequency and persistence.</caption>
+        <thead><tr><th>Event metric</th><th>Ozone</th><th>PM2.5</th></tr></thead>
+        <tbody>
+          <tr><td>P(high day)</td><td>0.1008</td><td>0.1022</td></tr>
+          <tr><td>P(extreme day)</td><td>0.0506</td><td>0.0515</td></tr>
+          <tr><td>P(high tomorrow | high today)</td><td>0.4273</td><td>0.3197</td></tr>
+          <tr><td>Longest high episode</td><td>49 days</td><td>16 days</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="table-note">Marginal rates sit near 10% and 5% because thresholds are station-relative P90 and P95. The real difference is persistence: high ozone tends to stay high, so prior-day event status and recent high-day counts are useful forecasting predictors.</p>
+      <p>Year-to-year effect sizes are small (0.00737 for ozone, 0.00570 for PM2.5), so seasonality is the more important broad temporal structure. Event-level links also exist despite the near-zero linear correlation: the association rule "PM2.5 high and summer implies ozone high" has confidence 0.330 and lift 3.315.</p>
+
+      <h2>Station clusters</h2>
+      <div class="table-wrap">
+      <table class="data-table">
+        <caption style="text-align:left;font-weight:600;margin-bottom:.4rem">Table 4. Selected K-Means cluster profile.</caption>
+        <thead><tr><th>Characteristic</th><th>Cluster 0</th><th>Cluster 1</th></tr></thead>
+        <tbody>
+          <tr><td>Stations</td><td>60</td><td>1,732</td></tr>
+          <tr><td>Ozone mean (ppm)</td><td>0.03083</td><td>0.03250</td></tr>
+          <tr><td>Ozone P95 (ppm)</td><td>0.04712</td><td>0.04775</td></tr>
+          <tr><td>Ozone seasonal amplitude</td><td>0.02241</td><td>0.01696</td></tr>
+          <tr><td>PM2.5 mean (µg/m³)</td><td>8.47</td><td>7.98</td></tr>
+          <tr><td>PM2.5 P95 (µg/m³)</td><td>19.37</td><td>16.51</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="table-note">Cluster 0 is the small higher-burden group on PM2.5 mean/P95 and ozone seasonal amplitude, even though Cluster 1 has slightly higher ozone mean/P95. A cluster should not be labelled from one pollutant alone. The 60 stations are candidates for targeted review, not a claim that the rest are low-risk.</p>
+
+      <h2>Forecasting readiness</h2>
+      <p>Chronological splits use 2020 to 2024 for training, 2025 for validation and January to May 2026 for testing. Lag features (1, 2, 3, 7, 14, 30 days), shifted rolling statistics (3, 7, 14, 30 days) and future targets (1, 7, 14, 30 days) are built to avoid leakage.</p>
+      <div class="table-wrap">
+      <table class="data-table">
+        <caption style="text-align:left;font-weight:600;margin-bottom:.4rem">Table 5. Chronological split sizes after 30-day history and target construction.</caption>
+        <thead><tr><th>Pollutant</th><th>Training rows</th><th>Validation rows</th><th>Test rows</th></tr></thead>
+        <tbody>
+          <tr><td>Ozone</td><td>1,583,754</td><td>323,539</td><td>64,250</td></tr>
+          <tr><td>PM2.5</td><td>169,124</td><td>34,462</td><td>7,390</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="table-note">This is a preparation design, not evidence of forecasting accuracy. No MAE, RMSE or R² results are reported yet.</p>
+    </div>
 
     <div class="prose summary">
-      <!-- EDIT: sum up the main findings -->
       <h2>Anomalies, observations and patterns</h2>
       <ul>
-        <li><strong>Anomaly:</strong> something unusual in the data and a likely reason for it.</li>
-        <li><strong>Observation:</strong> something you measured or noticed.</li>
-        <li><strong>Pattern:</strong> a trend that repeats across the dataset.</li>
+        <li><strong>Anomaly:</strong> PM2.5 has an extreme maximum of 593 µg/m³ and skewness of 14.40. It needs source-checking rather than automatic removal.</li>
+        <li><strong>Anomaly:</strong> Ozone and PM2.5 are almost uncorrelated day to day (r = 0.00225), yet high-PM2.5 summer days strongly co-occur with high-ozone days (lift 3.315).</li>
+        <li><strong>Observation:</strong> The two clusters are very unbalanced (60 versus 1,732 stations), and the 60 higher-burden stations are spread across the country rather than in one region.</li>
+        <li><strong>Observation:</strong> PM2.5-derived rolling features are highly missing (62.22% for one mean feature), so results should be reported with coverage and per-station performance.</li>
+        <li><strong>Pattern:</strong> Ozone peaks in spring and summer with a strong yearly cycle; PM2.5 risk peaks in summer and winter.</li>
+        <li><strong>Pattern:</strong> High ozone days persist longer than high PM2.5 days (49 versus 16 days at most).</li>
+      </ul>
+      <h3>Limitations and next steps</h3>
+      <ul>
+        <li>No completed forecasting benchmark yet. Next, compare persistence and simple statistical baselines with regularized regression and tree-based models, using walk-forward evaluation by pollutant, horizon and cluster.</li>
+        <li>Cluster stability should be checked across resampling, feature sets and time windows before membership is treated as fixed.</li>
+        <li>The station-day panel is sparse across pollutants and time, so pooled metrics alone would be misleading.</li>
       </ul>
     </div>
 
