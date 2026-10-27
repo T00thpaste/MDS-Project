@@ -3,5 +3,5 @@
 window.TEAM_INFO = window.TEAM_INFO || {};
 window.TEAM_INFO["team01"] = {
   name: "Team 1",
-  topic: "Project title to be added"
+  topic: "Hybrid station clustering and cluster-guided forecasting of ozone and PM2.5 (EPA AQS)"
 };
