@@ -46,14 +46,23 @@
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <!-- EDIT: replace the src with images/your-graph.png -->
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 1. Short caption for the graph.</figcaption>
+        <img src="images/correlation.png" alt="Shows linear relationship strengths between economic indicators and energy metrics">
+        <figcaption>Figure 1. Heatmap displaying linear correlation coefficients across global economic and energy metrics.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Correlation Matrix of Economic and Energy Variables</h2>
+        <p>
+  The correlation matrix shows that primary energy consumption,
+  electricity generation, and electricity demand are very highly
+  correlated with each other and with GDP in levels
+  (<em>r</em> &ge; 0.87), reflecting the shared influence of country
+  size rather than a renewable-specific effect. By contrast, the
+  renewable share of electricity is only weakly correlated with GDP
+  (<em>r</em> = -0.06), GDP per capita (<em>r</em> = -0.07), and
+  energy intensity (<em>r</em> = -0.28). Energy per capita is most
+  strongly associated with GDP per capita among the candidate
+  predictors (<em>r</em> = 0.58).
+</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -61,13 +70,208 @@
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 2. Short caption for the graph.</figcaption>
+        <img src="images/scatters.png" alt="Illustrates how renewable electricity share relates to GDP per capita and energy intensity">
+        <figcaption>Figure 2. Scatter plots of renewable electricity share against GDP per capita and energy intensity.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Relationships Between Variables</h2>
+        <p>
+    These scatter plots show relationships between renewable electricity
+    share, income levels, and energy use across countries from 1990 to 2024.
+    Renewable share has a weak negative correlation with GDP per capita
+    (<em>r</em> = -0.07) and a stronger negative correlation with energy
+    intensity (<em>r</em> = -0.28).
+  </p>
+  <p>
+    In contrast, energy consumption per capita has a positive correlation
+    with GDP per capita (<em>r</em> = 0.58). This suggests that countries
+    with higher energy use per person tend to have higher income levels.
+  </p>
+  <p>
+    <strong>Key finding:</strong> GDP per capita varies widely at similar
+    renewable shares. Renewable adoption alone does not explain differences
+    in income, and these correlations do not establish causation.
+  </p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/top10_renewables.png" alt="Ranks the top ten countries maintaining the highest average proportion of renewable electricity">
+        <figcaption>Figure 3. Bar chart ranking top ten nations by average renewable electricity share.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Top 10 Countries by Average Renewable Electricity Share</h2>
+        <p>Bhutan, Lesotho, Paraguay, Iceland, and Nepal are among the countries with the highest average renewable electricity shares in our 1990–2024 dataset. The top-ranked countries have averages close to 100%. </p>
+        <p>these results largely reflect electricity systems historically dominated by hydropower, alongside differences in natural resources and national energy systems </p>
+        <p> <strong>Key finding:</strong> A high renewable electricity share does not necessarily indicate higher GDP. These rankings describe the electricity mix, not overall economic performance. </p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/renewable_trend.png" alt="Charts global average renewable electricity share from 1990 through 2024">
+        <figcaption>Figure 4. Trend in the unweighted country-average renewable electricity share (1990–2024).</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Renewable Electricity Share Over Time</h2>
+        <p>
+     Global renewable share grew steadily after a long flat period.
+    The unweighted country-average share of electricity generated from
+    renewable sources increased from approximately 23.5% in 1990 to
+    38.7% in 2024, indicating a substantial long-term shift towards
+    renewable electricity.
+  </p>
+
+  <p>
+    The trend shows fluctuations during the 1990s, relative stability
+    through much of the 2000s and 2010s, and a stronger upward movement
+    in the later years, particularly after 2019.
+  </p>
+  <p>
+    <strong>Key finding:</strong> Renewable electricity adoption increased
+    over the study period. However, this is an unweighted average across
+    countries and entities, not a share weighted by each country's
+    electricity production. Differences in data coverage may also affect
+    the observed trend.
+  </p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/gdp_trend.png" alt="Plots mean annual GDP growth percentage over time, marking cyclical economic contractions">
+        <figcaption>Figure 5. Line graph tracking average annual GDP growth percentage (1990–2024).</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Average GDP Growth Over Time</h2>
+      <p>
+    Unlike the gradual rise in renewable electricity share, average GDP
+    growth fluctuates considerably across the 1990–2024 study period.
+    Growth remains mostly positive during much of the period, with a
+    noticeable downturn around the 2008–2009 global financial crisis.
+  </p>
+
+  <p>
+    The sharpest decline occurs in 2020, when average GDP growth falls
+    to approximately -5%, followed by a strong rebound in 2021.
+    These movements highlight the sensitivity of economic growth to
+    major global disruptions.
+  </p>
+
+  <p>
+    <strong>Key finding:</strong> GDP growth is volatile and cyclical,
+    unlike the longer-term upward trend in renewable electricity share.
+  </p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/dual_trend.png" alt="Plots renewable share against annual GDP growth to contrast structural trends with economic cycles">
+        <figcaption>Figure 6. Dual-axis graph overlaying renewable share against annual GDP growth.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Renewable Share and GDP Growth Over Time</h2>
+        <p>
+          Renewable adoption steadily climbs regardless of GDP volatility.
+          GDP shocks do not alter the continuous upward path of renewable share.<br>
+    The unweighted country-average renewable electricity share increases
+    from approximately 23.5% in 1990 to 38.7% in 2024, while average GDP
+    growth fluctuates considerably throughout the same period.
+  </p>
+
+  <p>
+    GDP growth experiences sharp downturns, particularly in 2020, when
+    it falls to approximately -5%, followed by a strong rebound in 2021.
+    In contrast, renewable electricity share follows a broader upward
+    trend over time.
+  </p>
+
+  <p>
+    <strong>Key finding:</strong> Renewable electricity adoption and
+    short-term economic growth display different patterns. Their trends
+    do not move in lockstep, but this graph alone cannot establish
+    causation or rule out other relationships.
+  </p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/feature_importance.png" alt="Ranks relative feature importance in predicting GDP per capita using Random Forest">
+        <figcaption>Figure 7. Horizontal bar plot ranking predictive feature importances for GDP per capita.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Random Forest Feature Importance</h2>
+        <p>
+    The Random Forest regression model identifies energy consumption
+    per capita as the most important predictor of log GDP per capita,
+    accounting for approximately 81% of total feature importance.
+  </p>
+
+  <p>
+    Energy intensity contributes about 10%, followed by inflation
+    at around 5%. Industrial value added, primary energy consumption,
+    and renewable electricity share have considerably smaller
+    individual contributions.
+  </p>
+
+  <p>
+    <strong>Key finding:</strong> Energy use per person dominates
+    the model's predictions of income levels, while renewable
+    electricity share contributes relatively little on its own.
+  </p>
+
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/actual_vs_pred.png" alt="Evaluates model accuracy by comparing actual log GDP per capita against predicted values">
+        <figcaption>Figure 8. Actual versus Random Forest-predicted log GDP per capital  on the test dataset. The dashed diagonal line represents perfect agreement between actual and predicted values</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Actual vs Predicted GDP per Capita</h2>
+        <p>The machine learning model demonstrates high predictive accuracy. Data points cluster tightly along the diagonal reference line.</p>
+        <p>
+    This scatter plot evaluates the Random Forest regression model by
+    comparing actual log GDP per capita with the values predicted by
+    the model. The dashed diagonal line represents perfect predictions.
+  </p>
+
+  <p>
+    Most data points lie close to this reference line, indicating that
+    the model captures much of the variation in GDP per capita.
+    Some deviations are visible, particularly among observations with
+    higher income levels.
+  </p>
+
+  <p>
+    <strong>Model performance:</strong> On the test dataset, the
+    Random Forest model achieved an R² score of approximately 0.937,
+    with a mean absolute error (MAE) of 0.259 and a root mean squared
+    error (RMSE) of 0.360 on the log-transformed target.
+  </p>
+
+  <p>
+    <strong>Key finding:</strong> The close alignment between actual
+    and predicted values indicates strong predictive performance.
+    However, prediction accuracy does not establish causal relationships
+    between energy use and economic development.
+  </p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -75,11 +279,177 @@
     <div class="prose summary">
       <!-- EDIT: sum up the main findings -->
       <h2>Anomalies, observations and patterns</h2>
-      <ul>
-        <li><strong>Anomaly:</strong> something unusual in the data and a likely reason for it.</li>
-        <li><strong>Observation:</strong> something you measured or noticed.</li>
-        <li><strong>Pattern:</strong> a trend that repeats across the dataset.</li>
-      </ul>
+      
+
+  <h4>Anomalies:</h4>
+  <ul>
+    <li>
+      <strong>Sudden change in renewable electricity share:</strong>
+      The unweighted country-average renewable electricity share rises
+      sharply from approximately 23% in 1999 to around 30% in 2000.
+      This change stands out from the fluctuations in the surrounding
+      years. The available analysis does not establish its exact cause;
+      differences in country composition or data coverage may influence
+      the observed average.
+    </li>
+
+    <li>
+      <strong>Sharp decline in GDP growth:</strong>
+      Average GDP growth falls to approximately -5% in 2020 before
+      rebounding strongly in 2021. This decline coincides with the
+      economic disruption associated with the COVID-19 pandemic.
+      In contrast, renewable electricity share follows a broader
+      upward trend over the study period.
+    </li>
+  </ul>
+
+  <h4>Observations:</h4>
+  <ul>
+    <li>
+      <strong>Differences between countries:</strong>
+      Bhutan, Lesotho, Paraguay, Iceland, and Nepal are among the
+      countries with the highest average renewable electricity shares
+      in the 1990–2024 dataset. Their electricity systems have
+      historically relied heavily on hydropower, illustrating the
+      importance of natural resources and existing energy systems
+      in understanding renewable adoption.
+    </li>
+
+    <li>
+      <strong>Relationship between energy use and income:</strong>
+      Energy consumption per capita has a positive correlation with
+      GDP per capita (Pearson's <em>r</em> ≈ 0.58), while renewable
+      electricity share has a weak negative correlation with GDP per
+      capita (<em>r</em> ≈ -0.07). This indicates that energy use per
+      person has a clearer linear association with income levels than
+      renewable electricity share alone.
+    </li>
+  </ul>
+
+  <h4>Patterns:</h4>
+  <ul>
+    <li>
+      <strong>Long-term growth in renewable electricity:</strong>
+      The unweighted country-average renewable electricity share
+      increases from approximately 23.5% in 1990 to 38.7% in 2024.
+      Although the trend includes periods of stability and fluctuation,
+      its overall direction is upward. Average GDP growth, in comparison,
+      displays greater short-term volatility.
+    </li>
+
+    <li>
+      <strong>Energy consumption dominates model predictions:</strong>
+      In the Random Forest model predicting log GDP per capita,
+      log energy consumption per capita accounts for approximately
+      81% of total feature importance. Log energy intensity is the
+      second most important feature, while renewable electricity share
+      contributes a much smaller proportion. This highlights the
+      predictive importance of energy-use characteristics in the
+      fitted model, without implying a causal relationship.
+    </li>
+  </ul>
+
+<h4><u>Limitations of the Study:</u></h4>
+
+  <ul>
+    <li>
+      <strong>Observational data:</strong>
+      The analysis identifies associations between renewable electricity
+      adoption, energy consumption, and economic indicators. However,
+      observational country-year data cannot establish that renewable
+      energy adoption directly causes economic growth or higher income.
+      Other influences, including technology, national policies, natural
+      resources, and economic structure, may also affect these relationships.
+    </li>
+
+    <li>
+      <strong>Missing data and uneven coverage:</strong>
+      Data availability differs across countries, years, and energy
+      technologies. Consequently, some analyses use fewer observations
+      than the original dataset. The results may therefore reflect the
+      countries and years for which the required indicators are available,
+      rather than providing equally complete coverage of every country
+      throughout the entire study period.
+    </li>
+
+    <li>
+      <strong>Differences between data sources:</strong>
+      The project combines energy indicators from Our World in Data
+      with economic indicators from the World Bank. Although observations
+      are aligned using country identifiers and year, the original sources
+      may differ in definitions, reporting coverage, and availability.
+      These differences must be considered when interpreting cross-country
+      comparisons.
+    </li>
+
+    <li>
+      <strong>Country size and aggregation:</strong>
+      Absolute GDP and total energy consumption are strongly influenced
+      by population and country size. Country averages can also hide
+      substantial differences between regions, industries, and communities
+      within the same country. Therefore, aggregate relationships may
+      not describe the circumstances of every individual country or
+      population group.
+    </li>
+
+    <li>
+      <strong>Limitations of predictive modelling:</strong>
+      Random Forest feature importance indicates the relative predictive
+      contribution of the selected variables; it does not measure their
+      causal effects. Similarly, strong test-set performance does not
+      guarantee identical accuracy for other datasets, countries, or
+      periods. The model predicts log GDP per capita rather than directly
+      explaining the causes of economic growth.
+    </li>
+  </ul>
+
+
+  <h4><u>Conclusion:</u></h4>
+  <p>
+    This project examines the relationship between renewable energy
+    adoption, energy consumption, and economic development across
+    countries from 1990 to 2024. By combining energy indicators from
+    Our World in Data with economic indicators from the World Bank,
+    the study develops a country-year dataset containing 7,606
+    observations across 220 countries and entities. Data cleaning,
+    missing-value checks, exploratory visualisation, correlation
+    analysis, and predictive modelling provide different perspectives
+    on the relationship between energy systems and economic conditions.
+  </p>
+
+  <p>
+    The descriptive analysis reveals a long-term increase in the
+    unweighted country-average renewable electricity share, from
+    approximately 23.5% in 1990 to 38.7% in 2024. In contrast,
+    average GDP growth fluctuates considerably, with a particularly
+    sharp decline in 2020. The scatter plots and correlation analysis
+    also show that renewable electricity share alone has only a weak
+    linear relationship with GDP per capita, while energy consumption
+    per capita has a clearer positive association with income levels.
+  </p>
+
+  <p>
+    The Random Forest regression results reinforce this observation:
+    energy consumption per capita is the dominant predictor of log GDP
+    per capita among the selected features, whereas renewable electricity
+    share contributes relatively little to the model's predictions.
+    This does not imply that renewable energy is economically unimportant;
+    rather, it indicates that renewable share alone does not capture the
+    many factors associated with differences in income across countries.
+  </p>
+
+  <p>
+    Overall, the findings highlight the importance of examining renewable
+    energy adoption alongside energy-use characteristics, income levels,
+    and national economic structures. The project demonstrates how public
+    datasets and data-science techniques can reveal meaningful patterns
+    in the global energy transition while recognising the limitations
+    of missing data, cross-country differences, and observational analysis.
+    Further research incorporating country-specific characteristics,
+    additional explanatory variables, and alternative modelling approaches
+    could provide a deeper understanding of these relationships.
+  </p>
+   
     </div>
 
     <p class="next"><a class="button" href="team.html">Meet the team</a> <a class="button alt" href="index.html">Back to the project</a></p>
