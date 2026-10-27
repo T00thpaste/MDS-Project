@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Team 4 | Project</title>
+  <title>BeyondTheBasket | Team 4</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,7 +15,6 @@
     <div class="wrap bar">
       <div class="brand-group">
         <a class="back" href="../../index.html">All teams</a>
-        <!-- EDIT: team name (also change it in the other two pages) -->
         <span class="brand">Team 4</span>
       </div>
       <nav class="tabs" aria-label="Team pages">
@@ -25,38 +25,110 @@
     </div>
   </header>
 
-
   <section class="page-hero">
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
-      <!-- EDIT: your project title and a one or two line summary -->
-      <h1 data-scramble>Your project title goes here</h1>
-      <p class="lede">One or two sentences that tell a visitor what this project is about and why it matters.</p>
+      <h1 data-scramble>BeyondTheBasket</h1>
+      <p class="lede">
+        Analysis of Customer Purchasing Behaviour Using Data Mining and
+        Machine Learning. Exploring retail transactions to understand
+        customer value, purchasing patterns, and actionable customer segments.
+      </p>
     </div>
   </section>
 
   <main class="wrap prose">
 
-    <!-- EDIT: describe the problem statement (PS) your team was given -->
     <h2>Problem statement</h2>
-    <p>Describe the problem your team is solving. Say what question you are trying to answer and what the final outcome should look like.</p>
-    <p>Add more paragraphs by copying a &lt;p&gt; line like this one.</p>
+    <p>
+      Understanding customer purchasing behaviour is essential for retailers
+      seeking to improve customer retention, identify valuable customers, and
+      make data-driven business decisions. Transaction data contains useful
+      information about purchasing frequency, spending patterns, product
+      preferences, and customer activity, but these patterns may not be
+      immediately apparent from raw records.
+    </p>
+    <p>
+      BeyondTheBasket investigates how data mining and machine learning
+      techniques can be applied to retail transaction data to uncover
+      purchasing patterns and segment customers according to their behaviour
+      and monetary value. The goal is to turn transactional data into
+      interpretable insights that can support targeted marketing and
+      customer relationship strategies.
+    </p>
 
     <h2>Dataset</h2>
-    <p>Where the data comes from, how many rows and columns it has, and what each important column means.</p>
+    <p>
+      The project uses the UCI Online Retail dataset, which contains
+      transactional records from a UK-based online retailer. The original
+      dataset contains 541,909 records, including information such as invoice
+      numbers, product codes, product descriptions, quantities, invoice dates,
+      unit prices, customer identifiers, and countries.
+    </p>
+    <p>
+      Data preprocessing was performed to prepare the records for analysis.
+      After cleaning, 524,878 records remained. Customer segmentation was
+      conducted on 392,692 cleaned transactions with known CustomerID,
+      representing 4,338 customers.
+    </p>
 
     <h2>Approach</h2>
-    <p>Briefly explain the steps you followed, from cleaning the data to producing the final results.</p>
+    <p>
+      The project follows a data analysis pipeline, beginning with data
+      preparation and exploratory analysis before applying customer
+      segmentation techniques.
+    </p>
     <ul>
-      <li>Step or method one</li>
-      <li>Step or method two</li>
-      <li>Step or method three</li>
+      <li>
+        <strong>Data preprocessing:</strong> Clean the transaction records
+        and prepare the relevant fields for analysis.
+      </li>
+      <li>
+        <strong>Exploratory data analysis:</strong> Study product quantities,
+        revenue, product correlations, country-level purchasing patterns,
+        and monthly revenue trends.
+      </li>
+      <li>
+        <strong>Customer segmentation:</strong> Use customer-level
+        behavioural and monetary features with K-Means clustering to identify
+        distinct customer groups.
+      </li>
+      <li>
+        <strong>Cluster evaluation:</strong> Examine the elbow method and a
+        PCA projection to help evaluate and visualise the four customer
+        segments.
+      </li>
+      <li>
+        <strong>Interpretation:</strong> Translate the identified purchasing
+        patterns and customer segments into practical retail insights.
+      </li>
     </ul>
 
-    <h2>Tools used</h2>
-    <p>Python, pandas, matplotlib (replace with your own list).</p>
+    <h2>Key findings</h2>
+    <p>
+      The analysis identified four customer segments: High-Value Frequent,
+      Inactive Low-Value, Recent Low-Value, and Moderate-Value customers.
+      These groups differ in recency, purchase frequency, and monetary value,
+      providing a basis for differentiated customer engagement strategies.
+    </p>
+    <p>
+      The exploratory analysis also examines product-level sales, relationships
+      between product purchases, geographic sales patterns, and monthly revenue.
+      November had the highest observed monthly revenue in the analysed period;
+      December represents a partial month in the dataset.
+    </p>
 
-    <p class="next"><a class="button" href="results.html">See the results</a> <a class="button alt" href="team.html">Meet the team</a></p>
+    <h2>Tools and techniques</h2>
+    <p>
+      Python, pandas, data visualisation, exploratory data analysis,
+      Pearson correlation, K-Means clustering, the elbow method, and
+      Principal Component Analysis (PCA).
+    </p>
+
+    <p class="next">
+      <a class="button" href="results.html">See the results</a>
+      <a class="button alt" href="team.html">Meet the team</a>
+    </p>
   </main>
 
   <footer class="site-footer">
