@@ -3,5 +3,5 @@
 window.TEAM_INFO = window.TEAM_INFO || {};
 window.TEAM_INFO["team07"] = {
   name: "Team 7",
-  topic: "Human Activity Recognition using Smartphones"
+  topic: "Smartphone-Based Human Activity Recognition and User Identification Using Machine Learning"
 };
