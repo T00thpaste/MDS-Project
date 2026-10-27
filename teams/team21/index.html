@@ -25,36 +25,78 @@
     </div>
   </header>
 
-
   <section class="page-hero">
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
-      <!-- EDIT: your project title and a one or two line summary -->
-      <h1 data-scramble>Your project title goes here</h1>
-      <p class="lede">One or two sentences that tell a visitor what this project is about and why it matters.</p>
+      <h1 data-scramble>Comparative Demographic Analysis of India, China and Niger</h1>
+      <p class="lede">Three countries, three very different demographic stories, read from the UN World Population Prospects 2024 data.</p>
     </div>
   </section>
 
-  <main class="wrap prose">
-
-    <!-- EDIT: describe the problem statement (PS) your team was given -->
+  <main class="wrap">
+   <div class="prose">
     <h2>Problem statement</h2>
-    <p>Describe the problem your team is solving. Say what question you are trying to answer and what the final outcome should look like.</p>
-    <p>Add more paragraphs by copying a &lt;p&gt; line like this one.</p>
+    <p>Aggregate demographic statistics, such as the share of women in a population, often hide what is really happening underneath. Two countries can show almost the same number for very different reasons.</p>
+    <p>Our problem statement was to clean and explore a large global demographic dataset, find the relationships between fertility, mortality and life expectancy, and then explain why India, China and Niger follow sharply different trajectories even though their summary ratios can look alike.</p>
+    <p>The outcome is a set of graphs and case studies that show what drives each country&rsquo;s pattern: policy-driven sex selection in China, a historical reversal in gender mortality in India, and a data artifact caused by migration and weak early census data in Niger.</p>
 
     <h2>Dataset</h2>
-    <p>Where the data comes from, how many rows and columns it has, and what each important column means.</p>
+    
+    <p>
+      We used the
+      <strong>United Nations World Population Prospects 2024</strong>
+      file &ldquo;Demographic Indicators (Full)&rdquo;. It holds historical
+      estimates (1950&ndash;2023) and medium-variant projections for the
+      World, UN regions, and individual countries and areas.
+    </p>
 
-    <h2>Approach</h2>
-    <p>Briefly explain the steps you followed, from cleaning the data to producing the final results.</p>
+    <p>
+      <strong>Official data source:</strong>
+      United Nations, Department of Economic and Social Affairs,
+      Population Division.
+      <a
+        href="https://population.un.org/wpp/downloads?folder=Standard%20Projections&amp;group=Most%20used"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Access the WPP 2024 dataset and downloads
+      </a>.
+    </p>
+
     <ul>
-      <li>Step or method one</li>
-      <li>Step or method two</li>
-      <li>Step or method three</li>
+      <li><strong>Size:</strong> 21,983 rows and 51 columns when loaded.</li>
+      <li><strong>Identifiers:</strong> region or country name, location code, variant, type, parent code, year.</li>
+      <li><strong>Indicators:</strong> population size and sex ratios, total fertility rate, net reproduction rate, infant mortality rate, life expectancy (at birth and at ages 15, 40, 60, 65 and 80), median age and net migration.</li>
     </ul>
 
+    <h2>Approach</h2>
+    <ul>
+      <li><strong>Cleaning:</strong> dropped columns with mostly missing values (Notes, ISO3, ISO2 and SDMX codes) and removed the 5 rows with no Year. Years were cast to integers, numeric columns were converted to float, and country names were stored as a category.</li>
+      <li><strong>Checks:</strong> no duplicate rows were found. An IQR outlier scan flagged thousands of values in count columns, but they are real differences in country size (India versus Monaco), so no rows were removed.</li>
+      <li><strong>Derived measures:</strong> female share of population, female share of births (100 / (100 + SRB)), and the percentage by which female life expectancy exceeds male life expectancy.</li>
+      <li><strong>Analysis:</strong> univariate distributions, bivariate links between fertility, mortality and life expectancy, and a time-series comparison of India, China, Niger, the United States and the World.</li>
+      <li>The cleaned data was exported as <code>preprocessed_demographics.csv</code> so the work can be reproduced.</li>
+    </ul>
+   </div>
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/pipeline.png" alt="Flow chart of the data preprocessing pipeline">
+        <figcaption>Figure 1. Preprocessing pipeline applied to the raw WPP 2024 dataset.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Preprocessing pipeline</h2>
+        <p>From the raw 21,983 &times; 51 table to the cleaned CSV: missing values, type correction, categorical encoding, duplicate check and outlier assessment.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+   <div class="prose">
     <h2>Tools used</h2>
-    <p>Python, pandas, matplotlib (replace with your own list).</p>
+    <p>Python, Pandas, Seaborn, Matplotlib, Scikit-learn (StandardScaler), run in a Google Colab notebook.</p>
+    <p><a class="button" href="https://colab.research.google.com/drive/1wgAH9NkVP3qyhJ5yssWez6yPoTU6ampJ?usp=sharing" target="_blank" rel="noopener">Open the Colab notebook</a></p>
+   </div>
 
     <p class="next"><a class="button" href="results.html">See the results</a> <a class="button alt" href="team.html">Meet the team</a></p>
   </main>

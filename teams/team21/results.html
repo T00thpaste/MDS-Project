@@ -25,35 +25,26 @@
     </div>
   </header>
 
-
   <section class="page-hero">
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
       <h1 data-scramble>Results</h1>
-      <p class="lede">Graphs from the project, with an explanation of what each one shows.</p>
+      <p class="lede">What the graphs show, and the anomalies, observations and patterns we found.</p>
     </div>
   </section>
 
   <main class="wrap">
 
-    <!--
-      HOW TO ADD A GRAPH
-      1. Save your image inside this team's "images" folder (for example images/graph1.png).
-      2. Copy everything from "BEGIN RESULT" to "END RESULT" and paste it below the last result.
-      3. Change the image name, the alt text, the title and the explanation.
-    -->
-
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <!-- EDIT: replace the src with images/your-graph.png -->
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 1. Short caption for the graph.</figcaption>
+        <img src="images/fig2-female-sex-ratio.png" alt="Line chart of the female share of population from 1950 to 2023 for India, China, Niger, the USA and the World">
+        <figcaption>Figure 2. Female share of population (female / total population) over time, by country.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Female share of the population</h2>
+        <p>Niger starts far above everyone else at about 54% female in the 1950s and falls steadily toward 49.2%. India and China stay almost flat, below 50%.</p>
+        <p><strong>Anomaly:</strong> Niger&rsquo;s early value is not biology. It comes from male labour out-migration and imprecise colonial-era back-projections made before the first real census in 1960.</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -61,28 +52,86 @@
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 2. Short caption for the graph.</figcaption>
+        <img src="images/fig3-female-sex-ratio-at-birth.png" alt="Line chart of the female share of births from 1950 to 2023 for five countries">
+        <figcaption>Figure 3. Female share of births (female / total births) over time, by country.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Female share of births</h2>
+        <p>China&rsquo;s curve drops from the early 1980s, bottoms out at about 0.459 around 2004&ndash;2006, and recovers to about 0.475 by 2023. India slides from the mid-1970s, falls fastest around 1990 as ultrasound made sex-selective abortion possible, and bottoms out near 0.477 around 2010. The World dips to about 0.482 around 2000, pulled down by both.</p>
+        <p><strong>Anomaly:</strong> China&rsquo;s female share of births dipped to about 0.459 around 2004, a Sex Ratio at Birth (SRB) of about 117.8 boys per 100 girls and roughly 430,000 fewer girls that year. Niger and the USA stay near the natural level (about 0.488, or 105 boys per 100 girls).</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/fig4-female-life-expectancy-gap.png" alt="Line chart of how much longer women live than men, 1950 to 2023, for five countries">
+        <figcaption>Figure 4. Percentage by which female life expectancy exceeds male life expectancy.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>The life expectancy gap</h2>
+        <p>Women normally outlive men by 7&ndash;8%, as the World, China and the USA show. India is the exception: the line starts below zero, so men outlived women for decades, and it only turns positive in the 1980s.</p>
+        <p><strong>Anomaly:</strong> in mid-century India the gap was 10&ndash;11 percentage points below the biological norm because of maternal mortality, unequal nutrition and son preference.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/fig5-imr-vs-tfr.png" alt="Scatter plot of infant mortality rate against total fertility rate with correlation 0.82">
+        <figcaption>Figure 5. Infant Mortality Rate vs. Total Fertility Rate, all country-year records.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Infant mortality and fertility</h2>
+        <p>The correlation is 0.82. Where more infants die, women have more children.</p>
+        <p><strong>Pattern:</strong> this is consistent with the idea of fertility as risk compensation, where higher expected child mortality goes with higher fertility.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/fig6-tfr-vs-life-expectancy.png" alt="Scatter plot of life expectancy at birth against total fertility rate with correlation -0.85">
+        <figcaption>Figure 6. Total Fertility Rate vs. Life Expectancy at Birth, all country-year records.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Life expectancy and fertility</h2>
+        <p>The correlation is &minus;0.85. As life expectancy rises, fertility falls.</p>
+        <p><strong>Pattern:</strong> across about 21,000 records this is consistent with the demographic transition, where falling mortality is followed by falling fertility.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/fig7-net-migration.png" alt="Line chart of global net number of migrants over time, flat at zero until a small jump near 2023">
+        <figcaption>Figure 7. Global trend in net number of migrants (thousands).</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Global net migration</h2>
+        <p>Every emigrant is an immigrant somewhere else, so global net migration should be zero. The data shows tiny positive values only at the end (0.002 thousand in 2022 and 0.005 thousand in 2023).</p>
+        <p><strong>Anomaly:</strong> this is a statistical artifact from estimation error, different national sources and rounding. It is not real movement of people.</p>
       </div>
     </section>
     <!-- END RESULT -->
 
     <div class="prose summary">
-      <!-- EDIT: sum up the main findings -->
       <h2>Anomalies, observations and patterns</h2>
       <ul>
-        <li><strong>Anomaly:</strong> something unusual in the data and a likely reason for it.</li>
-        <li><strong>Observation:</strong> something you measured or noticed.</li>
-        <li><strong>Pattern:</strong> a trend that repeats across the dataset.</li>
+        <li><strong>China (anomaly):</strong> the female share of births fell to about 0.459 around 2004 and this birth deficit echoes through the age structure. Around 2033 the smaller cohort of potential mothers means fewer births whatever the fertility policy. Around 2044 nearly 90% of the male surplus survives to age 40, so millions of men may be unable to marry. In the 2040s deaths are projected to pass 25 million a year and the population to shrink by over 17 million a year.</li>
+        <li><strong>India (anomaly and observation):</strong> women lived far less long relative to men than the biological norm because of social factors, and a TFR of about 6 against an NRR below 2 shows many daughters did not survive to reproductive age. The female share of births fell to about 0.477, starting in the 1970s and falling fastest in the 1990s. India now looks stable: median age is rising toward 28 and fertility is declining.</li>
+        <li><strong>Niger (anomaly):</strong> the 54% female share in the 1950s is a data illusion. Today Niger has the world&rsquo;s highest birth rate and a very young population, so its sex ratio converges to the natural level of about 49% female.</li>
+        <li><strong>Pattern:</strong> similar summary numbers (49&ndash;50% female) can come from completely different causes: policy-driven sex selection, gender-based mortality, or a measurement artifact.</li>
+        <li><strong>Pattern:</strong> higher infant mortality goes with higher fertility, and higher life expectancy goes with lower fertility, across the whole global dataset.</li>
+        <li><strong>Data quality:</strong> thousands of IQR outliers were real size differences, and the small non-zero global migration is rounding noise.</li>
       </ul>
     </div>
 
-    <p class="next"><a class="button" href="team.html">Meet the team</a> <a class="button alt" href="index.html">Back to the project</a></p>
+    <p class="next"><a class="button" href="team.html">Meet the team</a> <a class="button alt" href="index.html">Back to the project</a> <a class="button alt" href="https://colab.research.google.com/drive/1wgAH9NkVP3qyhJ5yssWez6yPoTU6ampJ?usp=sharing" target="_blank" rel="noopener">Colab notebook</a></p>
   </main>
 
   <footer class="site-footer">

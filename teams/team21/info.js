@@ -3,5 +3,5 @@
 window.TEAM_INFO = window.TEAM_INFO || {};
 window.TEAM_INFO["team21"] = {
   name: "Team 21",
-  topic: "Project title to be added"
+  topic: "India, China and Niger: UN World Population Prospects 2024"
 };
