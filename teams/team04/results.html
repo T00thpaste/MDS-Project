@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Team 4 | Results</title>
+  <title>BeyondTheBasket | Results</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,8 +15,7 @@
     <div class="wrap bar">
       <div class="brand-group">
         <a class="back" href="../../index.html">All teams</a>
-        <!-- EDIT: team name (also change it in the other two pages) -->
-        <span class="brand">Team 4</span>
+        <span class="brand">BeyondTheBasket</span>
       </div>
       <nav class="tabs" aria-label="Team pages">
         <a href="index.html">Project</a>
@@ -25,64 +25,277 @@
     </div>
   </header>
 
-
   <section class="page-hero">
     <canvas class="field" aria-hidden="true"></canvas>
     <div class="wrap">
-      <h1 data-scramble>Results</h1>
-      <p class="lede">Graphs from the project, with an explanation of what each one shows.</p>
+      <h1 data-scramble>Results & Insights</h1>
+      <p class="lede">
+        Exploring retail sales patterns, product relationships, geographic
+        trends, monthly revenue, and customer segments using the UCI Online Retail dataset.
+      </p>
     </div>
   </section>
 
   <main class="wrap">
 
-    <!--
-      HOW TO ADD A GRAPH
-      1. Save your image inside this team's "images" folder (for example images/graph1.png).
-      2. Copy everything from "BEGIN RESULT" to "END RESULT" and paste it below the last result.
-      3. Change the image name, the alt text, the title and the explanation.
-    -->
+    <!-- Add your project figures to this team's images folder.
+         Update each image src if your filenames differ. -->
 
-    <!-- BEGIN RESULT -->
+    <!-- FIGURE 2: PRODUCT SALES -->
     <section class="result">
       <figure>
-        <!-- EDIT: replace the src with images/your-graph.png -->
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 1. Short caption for the graph.</figcaption>
+        <img src="images/product_quantity.png"
+             alt="Product-level sales measured by quantity sold">
+        <figcaption>Figure 2(a). Product-level sales by quantity.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Product Sales by Quantity</h2>
+        <p>
+          This analysis compares products based on the quantities sold.
+          It helps identify products that contribute substantially to
+          transaction volume and reveals differences in purchasing demand
+          across the product catalogue.
+        </p>
+        <p>
+          Quantity sold provides a volume-based view of product popularity.
+          It should be interpreted separately from revenue, since products
+          with high sales volumes do not necessarily generate the highest income.
+        </p>
       </div>
     </section>
-    <!-- END RESULT -->
 
-    <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 2. Short caption for the graph.</figcaption>
+        <img src="images/product_revenue.png"
+             alt="Product-level sales measured by revenue">
+        <figcaption>Figure 2(b). Product-level sales by revenue.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Product Sales by Revenue</h2>
+        <p>
+          This figure compares products by their revenue contribution.
+          Unlike quantity-based analysis, it highlights the products that
+          generate the greatest monetary value for the retailer.
+        </p>
+        <p>
+          Considering quantity and revenue together provides a more complete
+          understanding of product performance and helps distinguish
+          high-volume products from high-revenue products.
+        </p>
       </div>
     </section>
-    <!-- END RESULT -->
+
+    <!-- FIGURE 3: PRODUCT CORRELATION -->
+    <section class="result">
+      <figure>
+        <img src="images/product_correlation.png"
+             alt="Pearson correlation between selected products">
+        <figcaption>
+          Figure 3. Pearson correlation between product purchasing patterns.
+        </figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Relationship Between Product Purchases</h2>
+        <p>
+          The correlation analysis examines the relationship between
+          purchases of different products. In particular, the Pearson
+          correlation between JUMBO BAG RED RETROSPOT and
+          JUMBO BAG STRAWBERRY is approximately 0.684.
+        </p>
+        <p>
+          This positive correlation indicates that the observed purchasing
+          patterns for these products tend to move together. Correlation
+          alone does not establish that purchasing one product causes
+          customers to purchase the other.
+        </p>
+      </div>
+    </section>
+
+    <!-- FIGURE 4: GEOGRAPHIC ANALYSIS -->
+    <section class="result">
+      <figure>
+        <img src="images/country_sales.png"
+             alt="Units sold across countries">
+        <figcaption>Figure 4(a). Units sold by country.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Geographic Distribution of Sales</h2>
+        <p>
+          The country-level analysis compares retail activity across
+          different markets. The United Kingdom dominates the dataset's
+          sales activity, reflecting the retailer's strong domestic market.
+        </p>
+        <p>
+          Comparing units sold across countries helps reveal the geographic
+          concentration of demand and provides context for examining
+          international purchasing behaviour.
+        </p>
+      </div>
+    </section>
+
+    <section class="result">
+      <figure>
+        <img src="images/country_products.png"
+             alt="Leading products in selected international markets">
+        <figcaption>
+          Figure 4(b). Leading products in selected countries.
+        </figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Product Preferences Across Countries</h2>
+        <p>
+          This analysis compares leading products across selected
+          international markets. Rabbit Night Light emerges as a leading
+          product in several of the international markets examined.
+        </p>
+        <p>
+          The United Kingdom is excluded from this international comparison
+          so that the patterns in other countries can be examined without
+          the dominant domestic market overwhelming the comparison.
+        </p>
+      </div>
+    </section>
+
+    <!-- FIGURE 5: MONTHLY REVENUE -->
+    <section class="result">
+      <figure>
+        <img src="images/monthly_revenue.png"
+             alt="Monthly retail revenue over the observation period">
+        <figcaption>Figure 5. Monthly revenue trends.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Monthly Revenue Trends</h2>
+        <p>
+          The monthly revenue analysis examines how sales value changes
+          over the observation period and helps identify periods of stronger
+          or weaker retail activity.
+        </p>
+        <p>
+          November records the highest observed monthly revenue in the
+          analysed period. December contains only partial-month data, so
+          its value should not be directly compared with complete months
+          without accounting for the shorter observation period.
+        </p>
+      </div>
+    </section>
+
+    <!-- FIGURE 6: CUSTOMER SEGMENTATION -->
+    <section class="result">
+      <figure>
+        <img src="images/figure-6a-elbow.png"
+             alt="Elbow method used to examine the number of customer clusters">
+        <figcaption>Figure 6(a). Elbow method for customer segmentation.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Choosing the Number of Customer Segments</h2>
+        <p>
+          The elbow method is used to examine how the within-cluster
+          variation changes as the number of K-Means clusters increases.
+          This helps assess a suitable balance between cluster compactness
+          and model complexity.
+        </p>
+        <p>
+          The project uses four customer clusters for the final
+          segmentation analysis.
+        </p>
+      </div>
+    </section>
+
+    <section class="result">
+      <figure>
+        <img src="images/figure-6b-pca.png"
+             alt="PCA projection visualising the four customer segments">
+        <figcaption>Figure 6(b). PCA projection of customer clusters.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Customer Segmentation Using K-Means</h2>
+        <p>
+          K-Means clustering identifies four customer segments using
+          customer-level purchasing behaviour and monetary value.
+          Principal Component Analysis (PCA) provides a lower-dimensional
+          projection for visualising the resulting groups.
+        </p>
+        <p>
+          The first two principal components explain approximately 93.86%
+          of the variance in the PCA representation, providing a useful
+          two-dimensional view of the customer data.
+        </p>
+      </div>
+    </section>
 
     <div class="prose summary">
-      <!-- EDIT: sum up the main findings -->
-      <h2>Anomalies, observations and patterns</h2>
+      <h2>Customer Segments and Key Observations</h2>
+
+      <p>
+        The analysis identifies four customer groups with distinct
+        recency, frequency, and monetary characteristics.
+      </p>
+
       <ul>
-        <li><strong>Anomaly:</strong> something unusual in the data and a likely reason for it.</li>
-        <li><strong>Observation:</strong> something you measured or noticed.</li>
-        <li><strong>Pattern:</strong> a trend that repeats across the dataset.</li>
+        <li>
+          <strong>High-Value Frequent:</strong>
+          713 customers; average recency of 12.17 days,
+          frequency of 13.75 invoices, and monetary value of 8,088.02.
+        </li>
+        <li>
+          <strong>Inactive Low-Value:</strong>
+          1,622 customers; average recency of 181.51 days,
+          frequency of 1.32 invoices, and monetary value of 341.00.
+        </li>
+        <li>
+          <strong>Recent Low-Value:</strong>
+          837 customers; average recency of 17.70 days,
+          frequency of 2.19 invoices, and monetary value of 557.32.
+        </li>
+        <li>
+          <strong>Moderate-Value:</strong>
+          1,166 customers; average recency of 71.64 days,
+          frequency of 4.08 invoices, and monetary value of 1,801.78.
+        </li>
       </ul>
+
+      <h2>Overall Findings</h2>
+      <ul>
+        <li>
+          <strong>Customer value:</strong>
+          The customer base contains groups with substantially different
+          spending and purchasing-frequency characteristics.
+        </li>
+        <li>
+          <strong>Customer engagement:</strong>
+          High-value frequent customers show recent activity and repeated
+          purchases, while inactive low-value customers have much higher
+          recency and lower purchasing frequency.
+        </li>
+        <li>
+          <strong>Product relationships:</strong>
+          Positive correlations can help identify products with similar
+          purchasing patterns, but they do not prove causation.
+        </li>
+        <li>
+          <strong>Geographic patterns:</strong>
+          Sales are dominated by the United Kingdom, while international
+          comparisons reveal additional product preferences.
+        </li>
+        <li>
+          <strong>Time-based patterns:</strong>
+          November has the highest observed monthly revenue, with the
+          partial December period requiring cautious interpretation.
+        </li>
+      </ul>
+
+      <p>
+        Together, these results demonstrate how exploratory data analysis
+        and customer segmentation can help retailers understand purchasing
+        behaviour and identify opportunities for more targeted customer
+        engagement.
+      </p>
     </div>
 
-    <p class="next"><a class="button" href="team.html">Meet the team</a> <a class="button alt" href="index.html">Back to the project</a></p>
+    <p class="next">
+      <a class="button" href="team.html">Meet the team</a>
+      <a class="button alt" href="index.html">Back to the project</a>
+    </p>
   </main>
 
   <footer class="site-footer">
