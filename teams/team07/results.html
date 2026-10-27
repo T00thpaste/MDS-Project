@@ -47,13 +47,13 @@
     <section class="result">
       <figure>
         <!-- EDIT: replace the src with images/your-graph.png -->
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 1. Short caption for the graph.</figcaption>
+        <img src="images/Balance1.png" alt="Distribution of observations">
+        <figcaption>Figure 1. Number of observations contributed by each participant, grouped by
+activity.</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>30 Participants, 6 Activities - How evenly is the data spread?</h2>
+        <p>The grouped bar chart shows the number of observations contributed by each participant for each activity. Contributions are broadly comparable, although some participant–activity combinations have noticeably fewer observations than others. This gives us a reasonably distributed dataset without perfect uniformity.</p>
       </div>
     </section>
     <!-- END RESULT -->
@@ -61,17 +61,95 @@
     <!-- BEGIN RESULT -->
     <section class="result">
       <figure>
-        <img src="../../assets/placeholder.svg" alt="Describe the graph in one sentence">
-        <figcaption>Figure 2. Short caption for the graph.</figcaption>
+        <img src="images/Balance2.png" alt="Number of datapoints per activity">
+        <figcaption>Figure 2. Number of observations in each activity class</figcaption>
       </figure>
       <div class="result-text">
-        <h2>Title of this result</h2>
-        <p>Explain what the graph shows and what a reader should notice first.</p>
-        <p>Add anomalies, patterns or observations you found in the data here.</p>
+        <h2>Lying down dominates the dataset; walking downstairs comes last.</h2>
+        <p>The chart shows that lying down and standing have the most observations, while walking downstairs has the fewest. The classes are reasonably represented but not perfectly balanced, which is worth considering when interpreting overall classification accuracy.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+    
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/EDA1.png" alt="Acceleration magnitude distributions">
+        <figcaption>Figure 3. Acceleration magnitude distributions</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Stillness leaves a sharper fingerprint than movement.</h2>
+        <p>The density plot compares mean body-acceleration magnitude across the six activities. Stationary activities form sharp, overlapping peaks near −1, whereas dynamic activities have broader distributions extending towards higher values. This suggests that acceleration magnitude is effective at distinguishing stillness from movement, but less effective at separating individual walking activities.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+    
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/EDA2.png" alt=" Acceleration magnitude by activity">
+        <figcaption>Figure 4. Acceleration magnitude by activity</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>One feature separates standing still from moving — but not every type of movement.</h2>
+        <p>The box plot highlights the difference between stationary and dynamic activities, with walking downstairs exhibiting a higher median acceleration-magnitude feature than the stationary classes. The dashed thresholds illustrate potential separation boundaries, but the overlapping distributions show why a simple rule cannot classify every activity correctly.</p>
       </div>
     </section>
     <!-- END RESULT -->
 
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/tSNE1.png" alt="Projection for full dataset">
+        <figcaption>Figure 5. t-SNE projections of the full dataset coloured by activity and by
+participant.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Activities form islands; participant identities are less cleanly separated.</h2>
+        <p>The upper panel shows that the six activities form distinguishable regions, particularly for lying down and the walking-related classes, although sitting and standing overlap substantially. The lower panel colours the same observations by participant and shows much more mixing, suggesting that activity is more clearly separated in this projection than participant identity.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/Pattern1.png" alt="Participant wise projection for combined walking observations">
+        <figcaption>Figure 6. Participant-wise t-SNE projections of walking observations for all 30 participants.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Thirty walkers, thirty movement maps.</h2>
+        <p>The grid shows a separate t-SNE projection of walking observations for each participant, revealing varied patterns in cluster shape, spread and arrangement. These differences motivate the hypothesis that walking contains participant-specific information. However, every participant is embedded separately, so the shapes cannot be directly compared as if they shared a common coordinate system.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/Pattern2.png" alt="Participant wise projection for upstairs and downstairs">
+        <figcaption>Figure 7. Participant-wise t-SNE projections comparing walking upstairs and walking downstairs.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Changing the direction of walking changes the movement pattern.</h2>
+        <p>The grid compares the t-SNE projections for walking upstairs and downstairs across all 30 participants. The resulting patterns vary across participants and between the two activities, suggesting that stair climbing provides another useful perspective on movement characteristics. Because the embeddings are computed separately, visual differences alone cannot establish how reliably a participant's identity persists across both activities.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+
+    <!-- BEGIN RESULT -->
+    <section class="result">
+      <figure>
+        <img src="images/tSNE2.png" alt="">
+        <figcaption>Figure 8. Combined t-SNE projection of walking observations, coloured by participant identifier.</figcaption>
+      </figure>
+      <div class="result-text">
+        <h2>Walking leaves participant-associated fingerprints.</h2>
+        <p>Unlike the individual plots, this visualization places walking observations from all participants in one shared embedding. Many observations form compact, participant-associated clusters, although some participants occupy multiple separated regions and some regions overlap. This is the most relevant visualization for the participant-identification experiment and complements the high walking-based LightGBM accuracy.</p>
+      </div>
+    </section>
+    <!-- END RESULT -->
+    
     <div class="prose summary">
       <!-- EDIT: sum up the main findings -->
       <h2>Anomalies, observations and patterns</h2>
