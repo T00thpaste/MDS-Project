@@ -3,5 +3,5 @@
 window.TEAM_INFO = window.TEAM_INFO || {};
 window.TEAM_INFO["team07"] = {
   name: "Team 7",
-  topic: "Huamn Activity Recognition using Smartphone"
+  topic: "Human Activity Recognition using Smartphones"
 };
