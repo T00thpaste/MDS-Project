@@ -76,9 +76,12 @@
       <!-- EDIT: sum up the main findings -->
       <h2>Anomalies, observations and patterns</h2>
       <ul>
-        <li><strong>Anomaly:</strong> something unusual in the data and a likely reason for it.</li>
-        <li><strong>Observation:</strong> something you measured or noticed.</li>
-        <li><strong>Pattern:</strong> a trend that repeats across the dataset.</li>
+        <li><strong>Anomaly:</strong> An analytical anomaly occurs between the SITTING and STANDING activities. Although they are structurally distinct physical states, their inertial sensor profiles (especially acceleration magnitudes) overlap heavily.</li>
+        <li><strong>Anomaly:</strong> Even static activities can identify a person to some extent. Accuracy is 51–65%, which is about 15–20 times better than random guessing across 30 people (3.3%).
+        <li><strong>Observation:</strong> The data is clean: 10,299 windows, 561 features, 30 subjects and 6 activities, with no nulls or duplicates.</li>
+        <li><strong>Observation:</strong> The model needs only about 60–83 seconds of data per person per activity.</li>
+        <li><strong>Pattern:</strong> Movement reveals identity. Person-identification accuracy jumps about 40 percentage points from still to moving activities, because each person has a distinctive gait.</li>
+        <li><strong>Pattern:</strong> Gait signatures hold across stair direction. The plots for going upstairs and downstairs differ in shape, but each person remains recognizable in both.
       </ul>
     </div>
 
